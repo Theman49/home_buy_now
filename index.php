@@ -66,8 +66,7 @@
 						</div>
 
 						<div class="mb-3">
-							<label for="exampleInputEmail1" class="form-label">Kategori:</label>
-							<select name="jenis_kategori" style="border: 0px;padding:5px 8px;width:100%;">
+							<select name="jenis_kategori" style="border: 0px;padding:5px 8px;width:100%;height:40px;">
 								<?php
 									$sql = "SELECT * FROM kategori";
 									$query = mysqli_query($conn, $sql);
