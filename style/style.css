@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    max-height: 1370px;
+}
+
+#content {
+    box-shadow: 5px 8px 10px #333;
+    vertical-align: middle;
+    margin-top: 50px;
+}
+
+#image {
+    background: url('../image/bg-signUp.jpg') no-repeat center/cover;
+}
+
+.myForm {
+    padding: 10px 40px;
+    
+}
