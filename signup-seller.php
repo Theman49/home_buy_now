@@ -17,7 +17,7 @@
 			}else{
 				echo "<script>
 				alert('Berhasil Mendaftar');
-				document.location.href = './signup-seller.php?status=sukses';
+				document.location.href = './".$jenis_kategori."-page.php?email=".$email."&status=seller';
 				</script>";
 			}
 		}else{
@@ -70,6 +70,9 @@
 									$sql = "SELECT * FROM kategori";
 									$query = mysqli_query($conn, $sql);
 									while($row = mysqli_fetch_array($query)){
+										if($row['id_kategori'] == 1 || $row['id_kategori'] == 3 || $row['id_kategori'] == 4){
+											continue;
+										}
 								?>
 									<option value="<?=$row['jenis_kategori']?>"><?=strtoupper($row['jenis_kategori'])?></option>
 								<?php
