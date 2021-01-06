@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="./style/style.css">
 
 
-		<title>HOBUN | Home Buy Now</title>
+		<title>PRIMARY | Home Buy Now</title>
 	</head>
 
 	<body>
@@ -21,12 +21,23 @@
 		<?php
             include "./navigation.php";
         ?>
-        <?php
-        	include "./maps.php";
-        ?>
 							
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 		<script src="./script/jquery-3.5.1.min.js"></script>
 		<script src="./script/script.js"></script>
+
+		<style>
+			#kategori1 {
+				font-weight: bold;
+				background-color: #888;
+				color: #fff;
+				border-radius: 5px;
+			}
+
+			#kategori1 + .dropdown-menu {
+				background-color: #888;
+				color: #fff; 
+			}
+		</style>
 	</body>
 </html>

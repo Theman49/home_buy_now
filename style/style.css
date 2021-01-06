@@ -31,8 +31,19 @@
     box-shadow: 5px 8px 10px #333;
     vertical-align: middle;
     margin: 50px auto;
-    animation: fade 0.1s ease-in;
+    animation: fade 0.2s ease-in-out;
 }
+
+/* home */
+#maps .col:last-child {
+    padding: 20px; 
+    vertical-align: middle;
+    background: #333;
+    color: #fff;
+}
+
+
+/* signup */
 
 #image {
     background: url('../image/bg-signUp.jpg') no-repeat center/cover;

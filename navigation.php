@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">HOBUN</a>
+    <a class="navbar-brand" href="./home.php">HOBUN</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,13 +22,14 @@
             switch($row['jenis_kategori']){
               case 'primary':
           ?>
+
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Lokasi</a></li>
-                  <li><a class="dropdown-item" href="#">Harga</a></li>
+                  <li><a class="dropdown-item" href="./primary-page.php">Lokasi</a></li>
+                  <li><a class="dropdown-item" href="./primary-page.php">Harga</a></li>
                   <!-- <li><hr class="dropdown-divider"></li> -->
-                  <li><a class="dropdown-item" href="#">Luas Tanah</a></li> 
-                  <li><a class="dropdown-item" href="#">Luas Bangunan</a></li>
-                  <li><a class="dropdown-item" href="#">Jumlah Kamar Tidur</a></li>
+                  <li><a class="dropdown-item" href="./primary-page.php">Luas Tanah</a></li> 
+                  <li><a class="dropdown-item" href="./primary-page.php">Luas Bangunan</a></li>
+                  <li><a class="dropdown-item" href="./primary-page.php">Jumlah Kamar Tidur</a></li>
                 </ul>
           <?php
                 break;
