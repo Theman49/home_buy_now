@@ -5,34 +5,7 @@
 
 
 
-/* navigation styling */
-.nav-link {
-    position: relative;
-    display: inline-block;
-}
 
-.dropdown-menu {
-    display: none;
-    position: absolute;
-}
-
-
-.nav-link:hover + .dropdown-menu{
-    display: block;
-}
-.dropdown-menu:hover{
-    display: block;
-}
-@keyframes fade {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-#content {
-    box-shadow: 5px 8px 10px #333;
-    vertical-align: middle;
-    margin: 50px auto;
-    animation: fade 0.2s ease-in-out;
-}
 
 /* home */
 #maps .col:last-child {
@@ -43,58 +16,65 @@
 }
 
 
-/* signup */
 
-#image {
-    background: url('../image/bg-signUp.jpg') no-repeat center/cover;
+/* signup */
+.signup, .login {
+    box-shadow: 5px 8px 10px #333;
+    vertical-align: middle;
+    margin: 50px auto;
+    max-width: 800px;
+    transition: ease 2s;
+}
+
+.myFormLogin {
+    padding: 50px 30px;
+    background-color: #f5f4f4;
+    transition: linear 1s;
+}
+
+.status {
+    background-color: #cae4db;
+    color: #000;
+    transition: linear 1s;
+    padding-top: 200px;
 }
 
 .myForm {
     padding: 10px 40px;
-    
+    background-color: #f5f4f4;
+    transition: linear 1s;
 }
+
+
+.changeTo {
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+#sign-up-seller {
+    display: none;
+}
+
+@keyframes toggle {
+    0% {opacity: 1;}
+    50% {opacity: 0.3;}
+    100% {opacity: 0;}
+}
+
+.toggle {
+    animation: toggle 0.75s;
+}
+
+@media screen and (max-width: 500px){
+    .status {
+        display: none;
+    }
+    .signup, .login {
+        margin: 20px;
+    }
+}
+/* maps */
 
 #maps {
     justify-content: center;
 }
-
-
-/* slider filter */
-.slidecontainer {
-    width: 100%; /* Width of the outside container */
-  }
-  
-  /* The slider itself */
-  .slider {
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    width: 100%; /* Full-width */
-    height: 25px; /* Specified height */
-    background: #d3d3d3; /* Grey background */
-    outline: none; /* Remove outline */
-    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
-  }
-  
-  /* Mouse-over effects */
-  .slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-  }
-  
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #4CAF50; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-  }
-  
-  .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: #4CAF50; /* Green background */
-    cursor: pointer; /* Cursor on hover */
-  }

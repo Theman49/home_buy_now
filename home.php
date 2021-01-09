@@ -19,10 +19,10 @@
 	<body>
 
 		<?php
-            include "./navigation.php";
+            include "./component/navigation.php";
         ?>
         <?php
-        	include "./maps.php";
+        	include "./component/maps.php";
         ?>
         <?php
         	include "./maps-search.php";

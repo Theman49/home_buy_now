@@ -1,10 +1,7 @@
-<?php
-    include "./connection.php";
-?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="./home.php">HOBUN</a>
+    <a class="navbar-brand" href="../../home.php">HOBUN</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -116,3 +113,27 @@
     </div>
   </div>
 </nav>
+
+<style>
+  /* ======================================================== */
+/* navigation styling */
+.nav-link {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+}
+
+
+.nav-link:hover + .dropdown-menu{
+    display: block;
+}
+.dropdown-menu:hover{
+    display: block;
+}
+/* end of navigation styling */
+/* ======================================================== */
+</style>
