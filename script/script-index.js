@@ -20,6 +20,8 @@ cekmeout[1].onclick = function(){
 
 const toSeller = document.getElementById('changeToSeller');
 const toBuyer = document.getElementById('changeToBuyer');
+const toSeller2 = document.getElementById('changeToSeller2');
+const toBuyer2 = document.getElementById('changeToBuyer2');
 const signUpBuyer = document.getElementById('sign-up-buyer');
 const signUpSeller = document.getElementById('sign-up-seller');
 const formBuyer = document.getElementById('formBuyer');
@@ -44,6 +46,15 @@ toSeller.onclick = () => {
     
 }
 
+toSeller2.onclick = () => {
+    formBuyer.classList.add("toggle");
+    setTimeout(() => {
+        formBuyer.classList.remove("toggle");
+        signUpBuyer.style.display = "none";
+        signUpSeller.style.display = "block";
+    },1000)
+}
+
 toBuyer.onclick = () => {
     statusSeller.style.transform = `translateX(${-1*(signUpSeller.offsetWidth - statusSeller.offsetWidth)}px)`;
     formSeller.style.transform = `translateX(${signUpSeller.offsetWidth - formSeller.offsetWidth}px)`;
@@ -56,7 +67,13 @@ toBuyer.onclick = () => {
         statusSeller.style.transform = `translateX(${signUpSeller.offsetWidth - statusSeller.offsetWidth}px)`;
         formSeller.style.transform = `translateX(${-1*(signUpSeller.offsetWidth - formSeller.offsetWidth)}px)`;
     }, 1000);
-    
+}
 
-    
+toBuyer2.onclick = () => {
+    formSeller.classList.add("toggle");
+    setTimeout(() => {
+        formSeller.classList.remove("toggle");
+        signUpSeller.style.display = "none";
+        signUpBuyer.style.display = "block";
+    },1000)
 }
