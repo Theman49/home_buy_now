@@ -28,7 +28,7 @@
 }
 
 .myFormLogin {
-    padding: 50px 30px;
+    padding: 100px 30px;
     background-color: #f5f4f4;
     transition: linear 1s;
 }
@@ -103,6 +103,10 @@
     }
 
     .myForm {
+        padding: 10px 20px;
+    }
+
+    .myFormLogin {
         padding: 10px 20px;
     }
 }
