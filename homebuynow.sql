@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 05, 2021 at 07:55 AM
+-- Generation Time: Jan 12, 2021 at 05:40 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -48,6 +48,32 @@ INSERT INTO `kategori` (`id_kategori`, `jenis_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `primary_home`
+--
+
+CREATE TABLE `primary_home` (
+  `id_primary` int(11) NOT NULL,
+  `nama_object` varchar(30) NOT NULL,
+  `lokasi` text NOT NULL,
+  `jumlah_lantai` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `luas_tanah` int(11) NOT NULL,
+  `luas_bangunan` int(11) NOT NULL,
+  `jumlah_kamar_tidur` int(11) NOT NULL,
+  `usia_bangunan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `primary_home`
+--
+
+INSERT INTO `primary_home` (`id_primary`, `nama_object`, `lokasi`, `jumlah_lantai`, `harga`, `luas_tanah`, `luas_bangunan`, `jumlah_kamar_tidur`, `usia_bangunan`) VALUES
+(1, 'Perumahan Graha', 'Golf Cibinong', 2, 1000000000, 500, 400, 4, 1),
+(2, 'Cibinong Laras Asri', 'Cibinong', 2, 90000000, 600, 500, 2, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -66,12 +92,20 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `nama`, `email`, `no_handphone`, `kategori`, `password`, `status`) VALUES
-(1, 'Deny Lukman Syarif', 'cakden@gmail.com', '0912839', 'primary', 'aku', 'seller'),
-(2, 'Deny Lukman Syarif', 'cakden@gmail.com', '093498', 'primary', 'aku', 'buyer');
+(1, 'Deny Lukman', 'cakden@gmail.com', '081236751879', 'primary', 'deny', 'buyer'),
+(2, 'cika', 'cika@gmail.com', '012389', 'secondary', 'jj', 'seller'),
+(3, 'a', 'a@gm.com', '0172472', 'ruko', 'a', 'buyer'),
+(4, 'b', 'b@gm.com', '0132515', 'kavling', 'b', 'seller');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `primary_home`
+--
+ALTER TABLE `primary_home`
+  ADD PRIMARY KEY (`id_primary`);
 
 --
 -- Indexes for table `users`
@@ -84,10 +118,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `primary_home`
+--
+ALTER TABLE `primary_home`
+  MODIFY `id_primary` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

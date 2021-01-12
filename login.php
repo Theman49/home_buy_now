@@ -15,14 +15,15 @@
 		}else{
 			$row = mysqli_fetch_array($select);
 			$nama = $row['nama'];
+			$kategori = $row['kategori'];
 			if($password == $row['password']){
 				echo "<script>
 					alert('Selamat Datang $nama :)');
-					document.location.href = './index.php';
+					document.location.href = './page/".$kategori."/".$kategori."-page.php?email=".$email."&status=buyer';
 					</script>";
 			}else{
 				echo "<script>
-					alert('Password Salah');
+					alert('Email dan Password Tidak cocok');
 					document.location.href = './login.php?status=buyer';
 					</script>";
 			}
@@ -43,14 +44,15 @@
 		}else{
 			$row = mysqli_fetch_array($select);
 			$nama = $row['nama'];
+			$kategori = $row['kategori'];
 			if($password == $row['password']){
 				echo "<script>
 					alert('Selamat Datang $nama :)');
-					document.location.href = './index.php';
+					document.location.href = './page/".$kategori."/".$kategori."-page.php?email=".$email."&status=seller';
 					</script>";
 			}else{
 				echo "<script>
-					alert('Password Salah');
+				alert('Email dan Password Tidak cocok');
 					document.location.href = './login.php?status=seller';
 					</script>";
 			}
