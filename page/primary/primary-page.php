@@ -28,32 +28,38 @@
 				<form action="./primary-page.php" method="GET" class="container">
 					<div class="slidecontainer">
 						<label for="harga">Harga</label><br>
+						<label for="minHarga">100 Juta</label>
 						<input type="range" min="100" max="1000" value="<?php if(isset($_GET['range'])){
 							echo $_GET['range'];
 						}else{
 							echo "50";
 						}?>" class="slider" id="myHarga" name="harga">
-						<label id="harga"></label><label style="margin-left:5px;">Juta</label>
+						<label for="maxHarga">1 Miliar</label><br/>
+						<label id="harga" style="margin-left:30%;"></label><label style="margin-left:5px;">Juta</label>
 					</div>
 
 					<div class="slidecontainer">
 						<label for="lantai">Jumlah Lantai</label><br/>
+						<label for="minLantai">1</label>
 						<input type="range" min="1" max="3" value="<?php if(isset($_GET['jumlah_lantai'])){
 							echo $_GET['jumlah_lantai'];
 						}else{
 							echo "1";
 						}?>" class="slider" id="myJumlahLantai" name="jumlah_lantai">
-						<label id="jumlahLantai"></label>
+						<label for="maxLantai">3</label><br/>
+						<label id="jumlahLantai" style="margin-left:20%;"></label>
 					</div>
 
 					<div class="slidecontainer">
 						<label for="kamarTidur">Jumlah Kamar Tidur</label><br/>
+						<label for="minKamar">1</label>
 						<input type="range" min="1" max="5" value="<?php if(isset($_GET['jumlah_kamar_tidur'])){
 							echo $_GET['jumlah_kamar_tidur'];
 						}else{
 							echo "1";
 						}?>" class="slider" id="myJumlahKamarTidur" name="jumlah_kamar_tidur">
-						<label id="kamarTidur"></label>
+						<label for="maxKamar">3</label><br/>
+						<label id="kamarTidur" style="margin-left:20%;"></label>
 					</div>
 
 					<button type="submit" value="true" name="filter">Filter</button>
