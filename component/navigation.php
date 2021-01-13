@@ -106,10 +106,10 @@
           }
         ?>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="myInput">
+        <button class="btn btn-outline-success" type="submit" id="searchButton">Search</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -137,3 +137,4 @@
 /* end of navigation styling */
 /* ======================================================== */
 </style>
+

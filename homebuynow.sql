@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 12, 2021 at 05:40 AM
+-- Generation Time: Jan 13, 2021 at 04:31 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -56,7 +56,7 @@ CREATE TABLE `primary_home` (
   `nama_object` varchar(30) NOT NULL,
   `lokasi` text NOT NULL,
   `jumlah_lantai` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `harga` varchar(20) NOT NULL,
   `luas_tanah` int(11) NOT NULL,
   `luas_bangunan` int(11) NOT NULL,
   `jumlah_kamar_tidur` int(11) NOT NULL,
@@ -68,8 +68,9 @@ CREATE TABLE `primary_home` (
 --
 
 INSERT INTO `primary_home` (`id_primary`, `nama_object`, `lokasi`, `jumlah_lantai`, `harga`, `luas_tanah`, `luas_bangunan`, `jumlah_kamar_tidur`, `usia_bangunan`) VALUES
-(1, 'Perumahan Graha', 'Golf Cibinong', 2, 1000000000, 500, 400, 4, 1),
-(2, 'Cibinong Laras Asri', 'Cibinong', 2, 90000000, 600, 500, 2, 1);
+(1, 'Perumahan Graha', 'Golf Cibinong', 2, '1000000000', 500, 400, 4, 1),
+(2, 'Cibinong Laras Asri', 'Cibinong', 2, '900000000', 600, 500, 2, 1),
+(3, 'Bekasi Home', 'Bekasi', 3, '2200000000', 800, 500, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +122,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `primary_home`
 --
 ALTER TABLE `primary_home`
-  MODIFY `id_primary` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_primary` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

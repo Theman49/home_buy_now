@@ -26,43 +26,66 @@
 			<!-- F I L T E R -->
 			<div id="filter" class="col-3">
 				<form action="./primary-page.php" method="GET" class="container">
-					<div class="slidecontainer">
-						<label for="harga">Harga</label><br>
-						<label for="minHarga">100 Juta</label>
-						<input type="range" min="100" max="1000" value="<?php if(isset($_GET['range'])){
-							echo $_GET['range'];
-						}else{
-							echo "50";
-						}?>" class="slider" id="myHarga" name="harga">
-						<label for="maxHarga">1 Miliar</label><br/>
-						<label id="harga" style="margin-left:30%;"></label><label style="margin-left:5px;">Juta</label>
+				<div class="slidecontainer">
+						<label for="harga">Harga (juta)</label><br/>
+							<input class="min-max" type="number" min=100 value="<?php if(isset($_GET['min_harga'])){
+									echo $_GET['min_harga'];
+								}else{
+									echo "100";
+								}?>"id="minHarga" name="min_harga" placeholder="min">
+						<label> - </label>
+							<input class="min-max" type="number" min=100 value="<?php if(isset($_GET['max_harga'])){
+									echo $_GET['max_harga'];
+								}else{
+									echo "100";
+								}?>"id="maxHarga" name="max_harga" placeholder="max">
 					</div>
 
 					<div class="slidecontainer">
-						<label for="lantai">Jumlah Lantai</label><br/>
-						<label for="minLantai">1</label>
-						<input type="range" min="1" max="3" value="<?php if(isset($_GET['jumlah_lantai'])){
-							echo $_GET['jumlah_lantai'];
-						}else{
-							echo "1";
-						}?>" class="slider" id="myJumlahLantai" name="jumlah_lantai">
-						<label for="maxLantai">3</label><br/>
-						<label id="jumlahLantai" style="margin-left:20%;"></label>
+						<label for="jumlahLantai">Jumlah Lantai</label><br/>
+							<input class="min-max" type="number" min=1 value="<?php if(isset($_GET['min_jumlah_lantai'])){
+									echo $_GET['min_jumlah_lantai'];
+								}else{
+									echo "1";
+								}?>"id="minJumlahLantai" name="min_jumlah_lantai" placeholder="min">
+						<label> - </label>
+							<input class="min-max" type="number" min=1 value="<?php if(isset($_GET['max_jumlah_lantai'])){
+									echo $_GET['max_jumlah_lantai'];
+								}else{
+									echo "1";
+								}?>"id="maxJumlahLantai" name="max_jumlah_lantai" placeholder="max">
 					</div>
 
 					<div class="slidecontainer">
 						<label for="kamarTidur">Jumlah Kamar Tidur</label><br/>
-						<label for="minKamar">1</label>
-						<input type="range" min="1" max="5" value="<?php if(isset($_GET['jumlah_kamar_tidur'])){
-							echo $_GET['jumlah_kamar_tidur'];
-						}else{
-							echo "1";
-						}?>" class="slider" id="myJumlahKamarTidur" name="jumlah_kamar_tidur">
-						<label for="maxKamar">3</label><br/>
-						<label id="kamarTidur" style="margin-left:20%;"></label>
+							<input class="min-max" type="number" min=1 value="<?php if(isset($_GET['min_kamar_tidur'])){
+									echo $_GET['min_kamar_tidur'];
+								}else{
+									echo "1";
+								}?>"id="minKamarTidur" name="min_kamar_tidur" placeholder="min">
+						<label> - </label>
+							<input class="min-max" type="number" min=1 value="<?php if(isset($_GET['max_kamar_tidur'])){
+									echo $_GET['max_kamar_tidur'];
+								}else{
+									echo "1";
+								}?>"id="maxLuasBangunan" name="max_kamar_tidur" placeholder="max">
+					</div>
+					<div>
+						<label for="luasBangunan">Luas Bangunan (m<sup>2</sup>)</label><br/>
+							<input class="min-max" type="number" min=100 value="<?php if(isset($_GET['min_luas_bangunan'])){
+								echo $_GET['min_luas_bangunan'];
+							}else{
+								echo "100";
+							}?>"id="minLuasBangunan" name="min_luas_bangunan" placeholder="min">
+						<label> - </label>
+							<input class="min-max" type="number" min=199 value="<?php if(isset($_GET['max_luas_bangunan'])){
+								echo $_GET['max_luas_bangunan'];
+							}else{
+								echo "100";
+							}?>"id="maxLuasBangunan" name="max_luas_bangunan" placeholder="min">
 					</div>
 
-					<button type="submit" value="true" name="filter">Filter</button>
+					<button type="submit" value="true" name="filter" style="margin-top:20px">Filter</button>
 				</form>
 			</div>
 
@@ -70,24 +93,51 @@
 			<div id="main-content" class="col-9">
 					<?php
 						if(isset($_GET['filter']) == 'true'){
-							$harga = $_GET['harga'];
-							$jumlah_lantai = $_GET['jumlah_lantai'];
-							$jumlah_kamar_tidur = $_GET['jumlah_kamar_tidur'];
+							$min_harga = $_GET['min_harga'];
+							$max_harga = $_GET['max_harga'];
+
+							$min_jumlah_lantai = $_GET['min_jumlah_lantai'];
+							$max_jumlah_lantai = $_GET['max_jumlah_lantai'];
+							
+							$min_kamar_tidur = $_GET['min_kamar_tidur'];
+							$max_kamar_tidur = $_GET['max_kamar_tidur'];
+
+							$min_luas_bangunan = $_GET['min_luas_bangunan'];
+							$max_luas_bangunan = $_GET['max_luas_bangunan'];
 					
-							$harga *= 1000000;
-					
-							$sql = "SELECT * FROM primary_home WHERE harga <= $harga AND jumlah_lantai <= $jumlah_lantai AND jumlah_kamar_tidur <= $jumlah_kamar_tidur;";
+							
+							$min_harga *= 1000000;
+							$max_harga *= 1000000;
+							
+							$sql = "SELECT * FROM primary_home WHERE harga >= $min_harga AND harga <= $max_harga AND jumlah_lantai >= $min_jumlah_lantai AND jumlah_lantai <= $max_jumlah_lantai AND jumlah_kamar_tidur >= $min_kamar_tidur AND jumlah_kamar_tidur <= $max_kamar_tidur AND luas_bangunan >= $min_luas_bangunan AND luas_bangunan <= $max_luas_bangunan;";
 						}else{
 							$sql = "SELECT * FROM primary_home";
 						}
 						$query = mysqli_query($conn, $sql);
-
 						if(mysqli_num_rows($query) == 0){
 							echo "no result";
 						}else{
 							while($row = mysqli_fetch_array($query)){
+								$lengthPrice = strlen($row['harga']) - 6;
+								$price = "";
+								if($lengthPrice > 3){
+									$digit = $lengthPrice - 3;
+									for($i=1;$i<=$digit;$i++){
+										$price .= $row['harga'][$i-1];
+									}
+									$price .= " Miliar";
+								}else{
+									for($i=1;$i<=$lengthPrice;$i++){
+										if($row['harga'][0] == '0'){
+											continue;
+										}else{
+											$price .= $row['harga'][$i-1];
+										}
+									}
+									$price .= " Juta";
+								}
 								?>
-									<div class="row" style="background-color: black;color:white;">
+									<div class="row" style="border: 1px solid black">
 									
 										<div class="col-4">
 											<img src="../../image/primary1.jpg" alt="foto" width="100%" height="auto">
@@ -96,7 +146,7 @@
 								<?php
 								echo $row['nama_object']."<br/>";
 								echo "Lokasi : ".$row['lokasi']."<br/>";
-								echo "Harga : ".$row['harga']."<br/>";
+								echo "Harga : ".$price."<br/>";
 								echo "Jumlah Lantai : ".$row['jumlah_lantai']."<br/>";
 								echo "Jumlah Kamar Tidur : ".$row['jumlah_kamar_tidur']."<br/>";
 								echo "Luas Tanah : ".$row['luas_tanah']."<br/>";
@@ -131,6 +181,9 @@
 			}
 		</style>
 
+
+
+
 		<script>
 		var myHarga = document.getElementById("myHarga");
 		var harga = document.getElementById("harga");
@@ -155,6 +208,20 @@
 		myJumlahKamarTidur.oninput = function() {
 			kamarTidur.innerHTML = this.value;
 		}
+
+		
 		</script>
+<script src="../../script/jquery-3.5.1.min.js"></script>
+<script>
+  $(document).ready(function(){
+			$("#searchButton").click(function() {
+					console.log("hai");
+					var value = $("#myInput").val().toLowerCase();
+					$("#main-content .row").filter(function() {
+						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+	});
+</script>
 	</body>
 </html>
