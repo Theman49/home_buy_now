@@ -57,13 +57,13 @@
 						</div>
 
 						<div class="mb-3">
-							<select name="jenis_kategori" style="border: 0px;padding:5px 8px;width:100%;height:40px;">
+							<select name="id_kategori" style="border: 0px;padding:5px 8px;width:100%;height:40px;">
 								<?php
 									$sql = "SELECT * FROM kategori";
 									$query = mysqli_query($conn, $sql);
 									while($row = mysqli_fetch_array($query)){
 								?>
-									<option value="<?=$row['jenis_kategori']?>"><?=strtoupper($row['jenis_kategori'])?></option>
+									<option value="<?=$row['id_kategori']?>"><?=strtoupper($row['jenis_kategori'])?></option>
 								<?php
 									}
 								?>
@@ -114,7 +114,7 @@
 						</div>
 
 						<div class="mb-3">
-							<select name="jenis_kategori" style="border: 0px;padding:5px 8px;width:100%;height:40px;">
+							<select name="id_kategori" style="border: 0px;padding:5px 8px;width:100%;height:40px;">
 								<?php
 									$sql = "SELECT * FROM kategori";
 									$query = mysqli_query($conn, $sql);
@@ -123,7 +123,7 @@
 											continue;
 										}
 								?>
-									<option value="<?=$row['jenis_kategori']?>"><?=strtoupper($row['jenis_kategori'])?></option>
+									<option value="<?=$row['id_kategori']?>"><?=strtoupper($row['jenis_kategori'])?></option>
 								<?php
 									}
 								?>

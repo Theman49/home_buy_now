@@ -15,8 +15,13 @@
 		}else{
 			$row = mysqli_fetch_array($select);
 			$nama = $row['nama'];
-			$kategori = $row['kategori'];
+			$id_kategori = $row['id_kategori'];
+			
 			if($password == $row['password']){
+				$getKategori = mysqli_query($conn, "SELECT * FROM kategori WHERE id_kategori = $id_kategori");
+				$row = mysqli_fetch_assoc($getKategori);
+				$kategori = $row['jenis_kategori'];
+
 				echo "<script>
 					alert('Selamat Datang $nama :)');
 					document.location.href = './page/".$kategori."/".$kategori."-page.php?email=".$email."&status=buyer';
@@ -44,8 +49,13 @@
 		}else{
 			$row = mysqli_fetch_array($select);
 			$nama = $row['nama'];
-			$kategori = $row['kategori'];
+			$id_kategori = $row['id_kategori'];
+			
 			if($password == $row['password']){
+				$getKategori = mysqli_query($conn, "SELECT * FROM kategori WHERE id_kategori = $id_kategori");
+				$row = mysqli_fetch_assoc($getKategori);
+				$kategori = $row['jenis_kategori'];
+
 				echo "<script>
 					alert('Selamat Datang $nama :)');
 					document.location.href = './page/".$kategori."/".$kategori."-page.php?email=".$email."&status=seller';
