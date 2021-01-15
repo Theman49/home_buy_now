@@ -98,7 +98,7 @@
 								<?php
 										}
 								?>
-								<option value="500+">> 5 Miliar</option>
+								<option value="5M+">> 5 Miliar</option>
 							</select>
 						
 					</div>
@@ -136,7 +136,7 @@
 										}
 								?>
 
-								<option value="8">> 500</option>
+								<option value="500+">> 500</option>
 							</select>
 					</div>
 
@@ -158,7 +158,12 @@
 							if($harga == 'null'){
 								$cekNull += 1;
 								$sqlHarga = "";
-							}else{
+							}else if($harga == '5M+'){
+								$harga = 5;
+								$sqlHarga = 'jumlah_lantai > '. $harga;
+								array_push($saveSql,$sqlHarga);
+							}
+							else{
 								array_push($saveSql,$sqlHarga);
 							}
 							
@@ -197,6 +202,10 @@
 							if($luas_bangunan == 'null'){
 								$cekNull += 1;
 								$sqlLuasBangunan = "";
+							}else if($luas_bangunan == '500+'){
+								$luas_bangunan = 7;
+								$sqlLuasBangunan = 'jumlah_kamar_tidur > '.$luas_bangunan;
+								array_push($saveSql,$sqlLuasBangunan);
 							}else {
 								array_push($saveSql,$sqlLuasBangunan);
 							}
