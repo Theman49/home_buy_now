@@ -26,7 +26,7 @@
 			<!-- F I L T E R -->
 			<div id="filter" class="col-3">
 				<form action="./primary-page.php" method="POST" class="container">
-				<div class="slidecontainer">
+				<!-- <div class="slidecontainer">
 						<label for="harga">Harga (juta)</label><br/>
 							<input class="min-max" type="number" min=100 value="<?php if(isset($_POST['min_harga'])){
 									echo $_POST['min_harga'];
@@ -83,11 +83,13 @@
 							}else{
 								echo "100";
 							}?>"id="maxLuasBangunan" name="max_luas_bangunan" placeholder="min">
-					</div>
-					<div class="slidecontainer">
+					</div> -->
+
+					<!-- S E L E C T I O N  C H O O S E -->
+					<div class="sub-filter">
 						<label for="harga">Harga</label><br/>
 							<select name="harga">
-								<option selected="on">--Pilih disini--</option>
+								<option selected="on" value="null">--Pilih disini--</option>
 								<?php
 									$query = mysqli_query($conn, "SELECT * FROM harga_primary");
 									while($row = mysqli_fetch_array($query)){	
@@ -100,6 +102,43 @@
 							</select>
 						
 					</div>
+					<div class="sub-filter">
+						<label for="lantai">Jumlah Lantai</label><br/>
+							<select name="jumlah_lantai">
+								<option selected="on"  value="null">--Pilih disini--</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="2+">>2</option>
+							</select>
+						
+					</div>
+					<div class="sub-filter">
+						<label for="kamar">Jumlah Kamar Tidur</label><br/>
+							<select name="jumlah_kamar_tidur">
+								<option selected="on"  value="null">--Pilih disini--</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="2+">>2</option>
+							</select>
+						
+					</div>
+
+					<div class="sub-filter">
+						<label for="luas-bangunan">Luas Bangunan (m<sup>2</sup>)</label><br/>
+							<select name="luas_bangunan" >
+								<option selected="on"  value="null">--Pilih disini--</option>
+								<?php
+									$query = mysqli_query($conn, "SELECT * FROM luas_tanah_dan_bangunan_primary");
+									while($row = mysqli_fetch_array($query)){	
+								?>
+								<option value="<?=$row['id_luas']?>"><?=$row['min_luas']?>-<?=$row['max_luas']?></option>
+								<?php
+										}
+								?>
+
+								<option value="8">> 500</option>
+							</select>
+					</div>
 
 					<button type="submit" value="true" name="filter" style="margin-top:20px">Filter</button>
 					<button type="submit" onclick="document.location.href='./primary-page.php'"/>Reset</button>
@@ -110,23 +149,86 @@
 			<div id="main-content" class="col-9">
 					<?php
 						if(isset($_POST['filter']) == 'true'){
-							$min_harga = $_POST['min_harga'];
-							$max_harga = $_POST['max_harga'];
+							$cekNull = 0;
+							$connector = ["AND","AND","AND"];
+							$saveSql = [];
 
-							$min_jumlah_lantai = $_POST['min_jumlah_lantai'];
-							$max_jumlah_lantai = $_POST['max_jumlah_lantai'];
+							$harga = $_POST['harga'];
+							$sqlHarga = 'id_harga = '.$harga;
+							if($harga == 'null'){
+								$cekNull += 1;
+								$sqlHarga = "";
+							}else{
+								array_push($saveSql,$sqlHarga);
+							}
 							
-							$min_kamar_tidur = $_POST['min_kamar_tidur'];
-							$max_kamar_tidur = $_POST['max_kamar_tidur'];
+							$jumlah_lantai = $_POST['jumlah_lantai'];
+							$sqlLantai = 'jumlah_lantai = '.$jumlah_lantai;
+							if($jumlah_lantai == 'null'){
+								$cekNull += 1;
+								$sqlLantai = "";
+								$connector[0] = '';
+							}
+							else if($jumlah_lantai == '2+'){
+								$jumlah_lantai = 2;
+								$sqlLantai = 'jumlah_lantai > '. $jumlah_lantai;
+								array_push($saveSql,$sqlLantai);
+							}else{
+								array_push($saveSql,$sqlLantai);
+							}
 
-							$min_luas_bangunan = $_POST['min_luas_bangunan'];
-							$max_luas_bangunan = $_POST['max_luas_bangunan'];
+							$jumlah_kamar_tidur = $_POST['jumlah_kamar_tidur'];
+							$sqlKamar = 'jumlah_kamar_tidur = '.$jumlah_kamar_tidur;
+							if($jumlah_kamar_tidur == 'null'){
+								$cekNull += 1;
+								$sqlKamar = "";
+								$connector[1] = '';
+							}
+							else if($jumlah_kamar_tidur == '2+'){
+								$jumlah_kamar_tidur = 2;
+								$sqlKamar = 'jumlah_kamar_tidur > '.$jumlah_kamar_tidur;
+								array_push($saveSql,$sqlKamar);
+							}else {
+								array_push($saveSql,$sqlKamar);
+							}
+
+							$luas_bangunan = $_POST['luas_bangunan'];
+							$sqlLuasBangunan = 'id_luas = '.$luas_bangunan;
+							if($luas_bangunan == 'null'){
+								$cekNull += 1;
+								$sqlLuasBangunan = "";
+							}else {
+								array_push($saveSql,$sqlLuasBangunan);
+							}
+
+							
+							if($cekNull == 4){
+								$sql = "SELECT * FROM primary_home";
+							}else if($cekNull == 3){
+								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0];
+							}else if($cekNull == 2){
+								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1];
+							}else {
+								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1]." AND ".$saveSql[2];
+							}
+							echo $sql;
+							// $min_harga = $_POST['min_harga'];
+							// $max_harga = $_POST['max_harga'];
+
+							// $min_jumlah_lantai = $_POST['min_jumlah_lantai'];
+							// $max_jumlah_lantai = $_POST['max_jumlah_lantai'];
+							
+							// $min_kamar_tidur = $_POST['min_kamar_tidur'];
+							// $max_kamar_tidur = $_POST['max_kamar_tidur'];
+
+							// $min_luas_bangunan = $_POST['min_luas_bangunan'];
+							// $max_luas_bangunan = $_POST['max_luas_bangunan'];
 					
 							
-							$min_harga *= 1000000;
-							$max_harga *= 1000000;
+							// $min_harga *= 1000000;
+							// $max_harga *= 1000000;
 							
-							$sql = "SELECT * FROM primary_home WHERE harga >= $min_harga AND harga <= $max_harga AND jumlah_lantai >= $min_jumlah_lantai AND jumlah_lantai <= $max_jumlah_lantai AND jumlah_kamar_tidur >= $min_kamar_tidur AND jumlah_kamar_tidur <= $max_kamar_tidur AND luas_bangunan >= $min_luas_bangunan AND luas_bangunan <= $max_luas_bangunan;";
+							// $sql = "SELECT * FROM primary_home WHERE harga >= $min_harga AND harga <= $max_harga AND jumlah_lantai >= $min_jumlah_lantai AND jumlah_lantai <= $max_jumlah_lantai AND jumlah_kamar_tidur >= $min_kamar_tidur AND jumlah_kamar_tidur <= $max_kamar_tidur AND luas_bangunan >= $min_luas_bangunan AND luas_bangunan <= $max_luas_bangunan;";
 						}else{
 							$sql = "SELECT * FROM primary_home";
 						}
@@ -161,8 +263,8 @@
 										}
 									}
 									$price .= " Juta ";
-									if($row['harga'][1] != '0'){
-										for($i=1;$i<4;$i++){
+									if($row['harga'][3] != '0'){
+										for($i=3;$i<6;$i++){
 											$pricePlus .= $row['harga'][$i];
 										}
 										$price .= $pricePlus." Ribu";	
