@@ -58,7 +58,7 @@
 
 				echo "<script>
 					alert('Selamat Datang $nama :)');
-					document.location.href = './page/".$kategori."/".$kategori."-page.php?email=".$email."&status=seller';
+					document.location.href = './page/".$kategori."/seller-".$kategori."-page.php?email=".$email."&status=seller';
 					</script>";
 			}else{
 				echo "<script>
