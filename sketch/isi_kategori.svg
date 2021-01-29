@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="isi_kategori.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.89478298"
+     inkscape:cx="214.85518"
+     inkscape:cy="1038.9641"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g72"
+     showgrid="false"
+     inkscape:window-width="683"
+     inkscape:window-height="712"
+     inkscape:window-x="683"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g140"
+       transform="matrix(0.61741618,0,0,0.60414797,56.890236,-22.035852)">
+      <g
+         transform="translate(10.156242,58.264757)"
+         id="g34">
+        <rect
+           style="opacity:1;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.37065554"
+           id="rect10"
+           width="100.92181"
+           height="81.678398"
+           x="8.0711212"
+           y="8.4019461"
+           ry="2.8899622" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:6.81590939px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17039773"
+           x="24.022356"
+           y="21.392229"
+           id="text14"
+           transform="scale(0.82331412,1.2146032)"><tspan
+             sodipodi:role="line"
+             id="tspan12"
+             x="24.022356"
+             y="21.392229"
+             style="stroke-width:0.17039773">    1. LOKASI</tspan><tspan
+             sodipodi:role="line"
+             x="24.022356"
+             y="29.912115"
+             style="stroke-width:0.17039773"
+             id="tspan16">    2. HARGA</tspan><tspan
+             sodipodi:role="line"
+             x="24.022356"
+             y="38.432003"
+             style="stroke-width:0.17039773"
+             id="tspan18">    3. LUAS TANAH</tspan><tspan
+             sodipodi:role="line"
+             x="24.022356"
+             y="46.951889"
+             style="stroke-width:0.17039773"
+             id="tspan20">    4. LUAS BANGUNAN</tspan><tspan
+             sodipodi:role="line"
+             x="24.022356"
+             y="55.471775"
+             style="stroke-width:0.17039773"
+             id="tspan22">    5. JUMLAH KAMAR TIDUR</tspan><tspan
+             sodipodi:role="line"
+             x="24.022356"
+             y="63.991661"
+             style="stroke-width:0.17039773"
+             id="tspan24">  <tspan
+   id="tspan112"
+   style="fill:#ff0000">  6. UMUR BANGUNAN</tspan></tspan></text>
+      </g>
+      <rect
+         ry="2.6478441"
+         y="48.439339"
+         x="18.227364"
+         height="18.227364"
+         width="100.92181"
+         id="rect36"
+         style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26458332" />
+      <text
+         id="text40"
+         y="61.268276"
+         x="27.79603"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="fill:#f9f9f9;stroke-width:0.26458332"
+           y="61.268276"
+           x="27.79603"
+           id="tspan38"
+           sodipodi:role="line">Secondary</tspan></text>
+    </g>
+    <g
+       transform="matrix(0.61741619,0,0,0.60414805,0.85010876,13.164669)"
+       id="g72">
+      <rect
+         style="opacity:1;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.37065554"
+         id="rect56"
+         width="100.92181"
+         height="81.678398"
+         x="8.0711212"
+         y="8.4019442"
+         ry="2.8899622" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:7.17252445px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17931311"
+         x="22.627514"
+         y="25.995966"
+         id="text70"
+         transform="scale(0.85290066,1.1724695)"><tspan
+           sodipodi:role="line"
+           id="tspan58"
+           x="22.627514"
+           y="25.995966"
+           style="stroke-width:0.17931311">    1. LOKASI</tspan><tspan
+           sodipodi:role="line"
+           x="22.627514"
+           y="34.96162"
+           style="stroke-width:0.17931311"
+           id="tspan60">    2. HARGA</tspan><tspan
+           sodipodi:role="line"
+           x="22.627514"
+           y="43.927277"
+           style="stroke-width:0.17931311"
+           id="tspan62">    3. LUAS TANAH</tspan><tspan
+           sodipodi:role="line"
+           x="22.627514"
+           y="52.892933"
+           style="stroke-width:0.17931311"
+           id="tspan64">    4. LUAS BANGUNAN</tspan><tspan
+           sodipodi:role="line"
+           x="22.627514"
+           y="61.858589"
+           style="stroke-width:0.17931311"
+           id="tspan96">    5. JUMLAH KAMAR TIDUR</tspan></text>
+    </g>
+    <rect
+       ry="1.5996898"
+       y="7.2286673"
+       x="5.8333511"
+       height="11.012026"
+       width="62.310757"
+       id="rect74"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.16159323" />
+    <text
+       id="text78"
+       y="15.142835"
+       x="11.614356"
+       style="font-style:normal;font-weight:normal;font-size:6.46372938px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.16159323"
+       xml:space="preserve"
+       transform="scale(1.0109212,0.98919675)"><tspan
+         style="fill:#f9f9f9;stroke-width:0.16159323"
+         y="15.142835"
+         x="11.614356"
+         id="tspan76"
+         sodipodi:role="line">Primary</tspan></text>
+    <g
+       id="g175"
+       transform="matrix(0.6464533,0,0,0.63196554,0.62112062,76.578683)">
+      <rect
+         ry="4.4474425"
+         y="3.2429917"
+         x="8.1097336"
+         height="125.69714"
+         width="96.294792"
+         id="rect161"
+         style="opacity:1;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.44914696" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:7.19815779px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.17995393"
+         x="19.559942"
+         y="18.150623"
+         id="text202"
+         transform="scale(0.98057642,1.0198083)"><tspan
+           sodipodi:role="line"
+           id="tspan200"
+           x="19.559942"
+           y="18.150623"
+           style="stroke-width:0.17995393">    1. TERAS</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="27.148321"
+           style="stroke-width:0.17995393"
+           id="tspan204">    2. FACADE</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="36.146019"
+           style="stroke-width:0.17995393"
+           id="tspan206">    3. GARASI</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="45.143715"
+           style="stroke-width:0.17995393"
+           id="tspan208">    4. TAMAN</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="54.141411"
+           style="stroke-width:0.17995393"
+           id="tspan210">    5. RUANG TAMU</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="63.139111"
+           style="stroke-width:0.17995393"
+           id="tspan212">    6. KAMAR TIDUR</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="72.13681"
+           style="stroke-width:0.17995393"
+           id="tspan214">    7. KAMAR MANDI</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="81.134506"
+           style="stroke-width:0.17995393"
+           id="tspan216">    8. DAPUR </tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="90.132202"
+           style="stroke-width:0.17995393"
+           id="tspan218">    9. TAMAN BELAKANG</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="99.129898"
+           style="stroke-width:0.17995393"
+           id="tspan220">    10. LAUNDRY AREA</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="108.12759"
+           style="stroke-width:0.17995393"
+           id="tspan222">    11. TANGGA</tspan><tspan
+           sodipodi:role="line"
+           x="19.559942"
+           y="117.12529"
+           style="stroke-width:0.17995393"
+           id="tspan224">    12. BALKON </tspan></text>
+      <rect
+         style="opacity:1;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.50343114"
+         id="rect226"
+         width="96.241119"
+         height="158.00497"
+         x="104.55206"
+         y="3.2429817"
+         ry="5.5905652" />
+      <text
+         transform="scale(0.93352465,1.071209)"
+         id="text252"
+         y="15.168528"
+         x="113.40894"
+         style="font-style:normal;font-weight:normal;font-size:6.25903225px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000001;fill-opacity:1;stroke:none;stroke-width:0.1564758"
+         xml:space="preserve"><tspan
+           id="tspan250"
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="15.168528"
+           x="113.40894"
+           sodipodi:role="line">    1. PILIHAN : </tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="22.992317"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan337">    • DESIGN</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="30.816109"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan339">    • PENGADAAN</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="38.6399"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan341">    • PENGERJAAN</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="46.463692"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan343">    • PEMELIHARAAN</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="54.287479"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan345"></tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="62.111271"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan347">    2. JUMLAH LANTAI</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="69.935059"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan349">    3. LUAS BANGUNAN</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="77.75885"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan351">    4. TERAS</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="85.582642"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan353">    5. GARASI/CARPORT</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="93.406425"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan355">    6. JUMLAH KAMAR TIDUR</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="101.23022"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan357">    7. JUMLAH KAMAR MANDI</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="109.05401"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan359">    8. RUANG TAMU</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="116.8778"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan361">    9. RUANG MAKAN</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="124.70159"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan363">    10. DAPUR</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="132.52538"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan365">    11. BALKON</tspan><tspan
+           style="fill:#000001;fill-opacity:1;stroke-width:0.1564758"
+           y="140.34917"
+           x="113.40894"
+           sodipodi:role="line"
+           id="tspan367">    12. TAMAN DEPAN/BELAKANG</tspan></text>
+    </g>
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.16159323"
+       id="rect177"
+       width="62.310757"
+       height="11.012026"
+       x="5.8333497"
+       y="67.586533"
+       ry="1.5996897" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.4637289px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.16159323"
+       x="11.614355"
+       y="76.159882"
+       id="text181"
+       transform="scale(1.0109212,0.98919675)"><tspan
+         sodipodi:role="line"
+         x="11.614355"
+         y="76.159882"
+         style="fill:#f9f9f9;stroke-width:0.16159323"
+         id="tspan196">Renovasi</tspan></text>
+    <rect
+       ry="1.5996897"
+       y="67.616112"
+       x="68.11377"
+       height="11.012026"
+       width="62.310757"
+       id="rect254"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.16159323" />
+    <text
+       transform="scale(1.0109212,0.98919675)"
+       id="text258"
+       y="76.189789"
+       x="73.221947"
+       style="font-style:normal;font-weight:normal;font-size:6.4637289px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:0.16159323"
+       xml:space="preserve"><tspan
+         id="tspan256"
+         style="fill:#f9f9f9;stroke-width:0.16159323"
+         y="76.189789"
+         x="73.221947"
+         sodipodi:role="line">Konstruksi</tspan></text>
+  </g>
+</svg>
