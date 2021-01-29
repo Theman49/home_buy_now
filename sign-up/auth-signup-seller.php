@@ -20,7 +20,7 @@
 				$jenis_kategori = $row['jenis_kategori'];
 				echo "<script>
 				alert('Berhasil Mendaftar');
-				document.location.href = '../page/".$jenis_kategori."/".$jenis_kategori."-page.php?email=".$email."&status=seller';
+				document.location.href = '../page/".$jenis_kategori."/seller-".$jenis_kategori."-page.php?email=".$email."&status=seller';
 				</script>";
 			}
 		}else{
