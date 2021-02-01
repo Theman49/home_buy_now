@@ -19,15 +19,14 @@
             switch($row['jenis_kategori']){
               case 'primary':
           ?>
-
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              
+                <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="./primary-page.php">Lokasi</a></li>
                   <li><a class="dropdown-item" href="./primary-page.php">Harga</a></li>
-                  <!-- <li><hr class="dropdown-divider"></li> -->
                   <li><a class="dropdown-item" href="./primary-page.php">Luas Tanah</a></li> 
                   <li><a class="dropdown-item" href="./primary-page.php">Luas Bangunan</a></li>
                   <li><a class="dropdown-item" href="./primary-page.php">Jumlah Kamar Tidur</a></li>
-                </ul>
+                </ul> -->
           <?php
                 break;
               case 'secondary':

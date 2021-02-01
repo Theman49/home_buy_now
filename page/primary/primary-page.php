@@ -28,18 +28,40 @@
 				<form action="./primary-page.php" method="POST" class="container">
 					<!-- S E L E C T I O N  C H O O S E -->
 					<div class="sub-filter">
+						<label for="lokasi">Lokasi</label><br/>
+							<select name="lokasi">
+								<option selected="on" value="null" style="background-color:red;padding:40px;">--Pilih disini--</option>
+								<?php
+									$query = mysqli_query($conn, "SELECT * FROM lokasi");
+									while($row = mysqli_fetch_array($query)){	
+								?>
+								<option <?php if(isset($_POST['lokasi'])){echo ($row['id_lokasi'] == $_POST['lokasi']) ? " selected='on'":"";}?>value="<?=$row['id_lokasi']?>"><?=$row['nama_lokasi']?></option>
+								<?php
+										}
+								?>
+							</select>
+						
+					</div>
+
+					<div class="sub-filter">
 						<label for="harga">Harga</label><br/>
 							<select name="harga">
 								<option selected="on" value="null" style="background-color:red;padding:40px;">--Pilih disini--</option>
 								<?php
 									$query = mysqli_query($conn, "SELECT * FROM harga_primary");
+									$banyak = mysqli_num_rows($query);
 									while($row = mysqli_fetch_array($query)){	
 								?>
-								<option value="<?=$row['id_harga']?>"><?=substr($row['min_harga'], 0, 3)?>-<?=substr($row['max_harga'], 0, 3)?> <?=(strlen($row['max_harga']) > 9) ? "Miliar" : "Juta"?></option>
+								<option <?php if(isset($_POST['harga'])){echo ($row['id_harga'] == $_POST['harga']) ? " selected='on'":"";}?> 
+									value="<?php echo $row['id_harga']?>"><?php if($row['id_harga'] == $banyak){echo "> 5 Miliar";}else{?>
+										<?php echo (strlen($row['min_harga']) > 9) ? substr($row['min_harga'], 0, strlen($row['min_harga'])-9) : substr($row['min_harga'], 0, 3); ?>
+										-
+										<?php echo (strlen($row['max_harga']) > 9) ? substr($row['max_harga'], 0, strlen($row['max_harga'])-9) : substr($row['max_harga'], 0, 3); ?> 
+										<?php echo (strlen($row['max_harga']) > 9) ? "Miliar" : "Juta";}?>
+								</option>
 								<?php
 										}
 								?>
-								<option value="5M+">> 5 Miliar</option>
 							</select>
 						
 					</div>
@@ -47,9 +69,9 @@
 						<label for="lantai">Jumlah Lantai</label><br/>
 							<select name="jumlah_lantai">
 								<option selected="on"  value="null">--Pilih disini--</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="2+">>2</option>
+								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == 1) ? " selected='on'":"";}?>value="1">1</option>
+								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == 2) ? " selected='on'":"";}?> value="2">2</option>
+								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == '2+') ? " selected='on'":"";}?> value="2+">>2</option>
 							</select>
 						
 					</div>
@@ -57,32 +79,31 @@
 						<label for="kamar">Jumlah Kamar Tidur</label><br/>
 							<select name="jumlah_kamar_tidur">
 								<option selected="on"  value="null">--Pilih disini--</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="2+">>2</option>
+								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == 1) ? " selected='on'":"";}?> value="1">1</option>
+								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == 2) ? " selected='on'":"";}?> value="2">2</option>
+								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == '2+') ? " selected='on'":"";}?> value="2+">>2</option>
 							</select>
 						
 					</div>
 
 					<div class="sub-filter">
 						<label for="luas-bangunan">Luas Bangunan (m<sup>2</sup>)</label><br/>
-							<select name="luas_bangunan" >
+							<select name="luas_tanah" >
 								<option selected="on"  value="null">--Pilih disini--</option>
 								<?php
 									$query = mysqli_query($conn, "SELECT * FROM luas_tanah_dan_bangunan_primary");
+									$banyak = mysqli_num_rows($query);
 									while($row = mysqli_fetch_array($query)){	
 								?>
-								<option value="<?=$row['id_luas']?>"><?=$row['min_luas']?>-<?=$row['max_luas']?></option>
+								<option <?php if(isset($_POST['luas_tanah'])){echo ($row['id_luas'] == $_POST['luas_tanah']) ? " selected='on'":"";}?> value="<?=$row['id_luas']?>"><?php if($row['id_luas'] == $banyak){echo "> 500";}else{?><?php echo $row['min_luas'];?>-<?php echo $row['max_luas'];}?></option>
 								<?php
 										}
 								?>
-
-								<option value="500+">> 500</option>
 							</select>
 					</div>
 
 					<button type="submit" value="true" name="filter" style="margin-top:20px">Filter</button>
-					<button type="submit" onclick="document.location.href='./primary-page.php'"/>Reset</button>
+					<button type="reset" onclick="document.location.href='./primary-page.php'"/>Reset</button>
 				</form>
 			</div>
 
@@ -90,18 +111,28 @@
 			<div id="main-content" class="col-9">
 					<?php
 						if(isset($_POST['filter']) == 'true'){
+
 							$cekNull = 0;
-							$connector = ["AND","AND","AND"];
 							$saveSql = [];
+
+							$getLokasi = $_POST['lokasi'];
+							$sqlLokasi = 'id_lokasi = '.$getLokasi;
+							if($getLokasi == 'null'){
+								$cekNull += 1;
+								$sqlLokasi = "";
+							}else{
+								array_push($saveSql,$sqlLokasi);
+							}
 
 							$harga = $_POST['harga'];
 							$sqlHarga = 'id_harga = '.$harga;
 							if($harga == 'null'){
 								$cekNull += 1;
 								$sqlHarga = "";
-							}else if($harga == '5M+'){
-								$harga = 5;
-								$sqlHarga = 'id_harga > '. $harga;
+							}
+							else if($harga == '5M+'){
+								$harga = 6;
+								$sqlHarga = 'id_harga = '. $harga;
 								array_push($saveSql,$sqlHarga);
 							}
 							else{
@@ -138,28 +169,30 @@
 								array_push($saveSql,$sqlKamar);
 							}
 
-							$luas_bangunan = $_POST['luas_bangunan'];
-							$sqlLuasBangunan = 'id_luas = '.$luas_bangunan;
-							if($luas_bangunan == 'null'){
+							$luas_tanah = $_POST['luas_tanah'];
+							$sqlLuasTanah = 'id_luas = '.$luas_tanah;
+							if($luas_tanah == 'null'){
 								$cekNull += 1;
-								$sqlLuasBangunan = "";
-							}else if($luas_bangunan == '500+'){
-								$luas_bangunan = 7;
-								$sqlLuasBangunan = 'id_luas > '.$luas_bangunan;
-								array_push($saveSql,$sqlLuasBangunan);
+								$sqlLuasTanah = "";
+							}else if($luas_tanah == '500+'){
+								$luas_tanah = 7;
+								$sqlLuasTanah = 'id_luas > '.$luas_tanah;
+								array_push($saveSql,$sqlLuasTanah);
 							}else {
-								array_push($saveSql,$sqlLuasBangunan);
+								array_push($saveSql,$sqlLuasTanah);
 							}
 
 							
-							if($cekNull == 4){
+							if($cekNull == 5){
 								$sql = "SELECT * FROM primary_home";
-							}else if($cekNull == 3){
+							}else if($cekNull == 4){
 								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0];
-							}else if($cekNull == 2){
+							}else if($cekNull == 3){
 								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1];
-							}else {
+							}else if($cekNull == 2){
 								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1]." AND ".$saveSql[2];
+							}else {
+								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1]." AND ".$saveSql[2]." AND ".$saveSql[3];
 							}
 							echo $sql;
 						
@@ -208,17 +241,20 @@
 									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="alert('nice')">
 									
 										<div class="col-4" style="padding: 0px;">
-											<img src="../../image/primary1.jpg" alt="foto" width="100%" height="auto">
+											<img src="../../image/<?=$row['id_primary']?>.jpg" alt="foto" width="100%" height="auto">
 										</div>
 										<div class="col-8">
 								<?php
 								echo $row['nama_object']."<br/>";
-								echo "Lokasi : ".$row['lokasi']."<br/>";
+								$idLokasi = $row['id_lokasi'];
+								$see = mysqli_query($conn, "SELECT nama_lokasi FROM lokasi WHERE id_lokasi = $idLokasi");
+								$lokasi = mysqli_fetch_assoc($see);
+								echo "Lokasi : ".$lokasi['nama_lokasi']."<br/>";
 								echo "Harga : ".$price."<br/>";
 								echo "Jumlah Lantai : ".$row['jumlah_lantai']."<br/>";
 								echo "Jumlah Kamar Tidur : ".$row['jumlah_kamar_tidur']."<br/>";
-								echo "Luas Tanah : ".$row['luas_tanah']."<br/>";
-								echo "Luas Bangunan : ".$row['luas_bangunan']."<br/>";
+								echo "Luas Tanah : ".$row['luas_tanah']." m<sup>2</sup><br/>";
+								echo "Luas Bangunan : ".$row['luas_tanah']." m<sup>2</sup><br/>";
 								echo "Usia Bangunan : ".$row['usia_bangunan'];
 								?>
 										</div>
@@ -279,17 +315,17 @@
 
 		
 		</script>
-<script src="../../script/jquery-3.5.1.min.js"></script>
-<script>
-  $(document).ready(function(){
-			$("#searchButton").click(function() {
-					console.log("hai");
-					var value = $("#myInput").val().toLowerCase();
-					$("#main-content .row").filter(function() {
-						$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
+		<script src="../../script/jquery-3.5.1.min.js"></script>
+		<script>
+		$(document).ready(function(){
+					$("#searchButton").click(function() {
+							console.log("hai");
+							var value = $("#myInput").val().toLowerCase();
+							$("#main-content .row").filter(function() {
+								$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+						});
+					});
 			});
-	});
-</script>
+		</script>
 	</body>
 </html>

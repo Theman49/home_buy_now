@@ -6,3 +6,20 @@ form {
     width:60px;
     padding:0px;
 }
+
+select {
+    width: 100%;
+}
+.sub-filter label:first-child {
+    font-size: 20px;
+}
+
+.sub-filter select{
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#main-content {
+    height: 50vw;
+    overflow-y: auto;
+}
