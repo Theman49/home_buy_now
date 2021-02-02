@@ -28,9 +28,9 @@
 				<form action="./primary-page.php" method="POST" class="container">
 					<!-- S E L E C T I O N  C H O O S E -->
 					<div class="sub-filter">
-						<label for="lokasi">Lokasi</label><br/>
-							<select name="lokasi">
-								<option selected="on" value="null" style="background-color:red;padding:40px;">--Pilih disini--</option>
+						<br/>
+							<select name="lokasi" <?php echo ($_POST['lokasi'] != 'null') ? "style='background-color:cyan;'": "";?>>
+								<option selected="on" value="null">LOKASI</option>
 								<?php
 									$query = mysqli_query($conn, "SELECT * FROM lokasi");
 									while($row = mysqli_fetch_array($query)){	
@@ -44,9 +44,9 @@
 					</div>
 
 					<div class="sub-filter">
-						<label for="harga">Harga</label><br/>
-							<select name="harga">
-								<option selected="on" value="null" style="background-color:red;padding:40px;">--Pilih disini--</option>
+						<br/>
+						<select name="harga" <?php echo ($_POST['harga'] != 'null') ? "style='background-color:cyan;'": "";?>>
+								<option selected="on" value="null">HARGA</option>
 								<?php
 									$query = mysqli_query($conn, "SELECT * FROM harga_primary");
 									$banyak = mysqli_num_rows($query);
@@ -66,9 +66,9 @@
 						
 					</div>
 					<div class="sub-filter">
-						<label for="lantai">Jumlah Lantai</label><br/>
-							<select name="jumlah_lantai">
-								<option selected="on"  value="null">--Pilih disini--</option>
+						<br/>
+						<select name="jumlah_lantai" <?php echo ($_POST['jumlah_lantai'] != 'null') ? "style='background-color:cyan;'": "";?>>
+								<option selected="on"  value="null">JUMLAH LANTAI</option>
 								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == 1) ? " selected='on'":"";}?>value="1">1</option>
 								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == 2) ? " selected='on'":"";}?> value="2">2</option>
 								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == '2+') ? " selected='on'":"";}?> value="2+">>2</option>
@@ -76,9 +76,9 @@
 						
 					</div>
 					<div class="sub-filter">
-						<label for="kamar">Jumlah Kamar Tidur</label><br/>
-							<select name="jumlah_kamar_tidur">
-								<option selected="on"  value="null">--Pilih disini--</option>
+						<br/>
+						<select name="jumlah_kamar_tidur" <?php echo ($_POST['jumlah_kamar_tidur'] != 'null') ? "style='background-color:cyan;'": "";?>>
+								<option selected="on"  value="null">JUMLAH KAMAR TIDUR</option>
 								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == 1) ? " selected='on'":"";}?> value="1">1</option>
 								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == 2) ? " selected='on'":"";}?> value="2">2</option>
 								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == '2+') ? " selected='on'":"";}?> value="2+">>2</option>
@@ -87,9 +87,9 @@
 					</div>
 
 					<div class="sub-filter">
-						<label for="luas-bangunan">Luas Bangunan (m<sup>2</sup>)</label><br/>
-							<select name="luas_tanah" >
-								<option selected="on"  value="null">--Pilih disini--</option>
+						<br/>
+						<select name="luas_tanah" <?php echo ($_POST['luas_tanah'] != 'null') ? "style='background-color:cyan;'": "";?>>
+								<option selected="on"  value="null">LUAS BANGUNAN (m<sup>2</sup>)</option>
 								<?php
 									$query = mysqli_query($conn, "SELECT * FROM luas_tanah_dan_bangunan_primary");
 									$banyak = mysqli_num_rows($query);
@@ -244,19 +244,32 @@
 											<img src="../../image/<?=$row['id_primary']?>.jpg" alt="foto" width="100%" height="auto">
 										</div>
 										<div class="col-8">
-								<?php
-								echo $row['nama_object']."<br/>";
-								$idLokasi = $row['id_lokasi'];
-								$see = mysqli_query($conn, "SELECT nama_lokasi FROM lokasi WHERE id_lokasi = $idLokasi");
-								$lokasi = mysqli_fetch_assoc($see);
-								echo "Lokasi : ".$lokasi['nama_lokasi']."<br/>";
-								echo "Harga : ".$price."<br/>";
-								echo "Jumlah Lantai : ".$row['jumlah_lantai']."<br/>";
-								echo "Jumlah Kamar Tidur : ".$row['jumlah_kamar_tidur']."<br/>";
-								echo "Luas Tanah : ".$row['luas_tanah']." m<sup>2</sup><br/>";
-								echo "Luas Bangunan : ".$row['luas_tanah']." m<sup>2</sup><br/>";
-								echo "Usia Bangunan : ".$row['usia_bangunan'];
-								?>
+											<h2 style="margin:5px auto;text-align:center;">
+												<?php
+												echo $row['nama_object']."<br/>";
+												?>
+											</h2>
+											<div class="row" style="margin-top:20px;">
+												<div class="col">
+													<?php
+													$idLokasi = $row['id_lokasi'];
+													$see = mysqli_query($conn, "SELECT nama_lokasi FROM lokasi WHERE id_lokasi = $idLokasi");
+													$lokasi = mysqli_fetch_assoc($see);
+													echo "Lokasi : ".$lokasi['nama_lokasi']."<br/>";
+													echo "Harga : ".$price."<br/>";
+													echo "Jumlah Lantai : ".$row['jumlah_lantai']."<br/>";
+													echo "Jumlah Kamar Tidur : ".$row['jumlah_kamar_tidur']."<br/>";
+													?>
+												</div>
+
+												<div class="col">
+													<?php
+													echo "Luas Tanah : ".$row['luas_tanah']." m<sup>2</sup><br/>";
+													echo "Luas Bangunan : ".$row['luas_tanah']." m<sup>2</sup><br/>";
+													echo "Usia Bangunan : ".$row['usia_bangunan'];
+													?>
+												</div>
+											</div>
 										</div>
 									</div>
 								<?php
