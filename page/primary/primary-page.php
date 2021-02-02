@@ -238,18 +238,18 @@
 									}
 								}
 								?>
-									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="alert('nice')">
+									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="alert('<?=$row['nama_object']?>')">
 									
 										<div class="col-4" style="padding: 0px;">
 											<img src="../../image/<?=$row['id_primary']?>.jpg" alt="foto" width="100%" height="auto">
 										</div>
 										<div class="col-8">
-											<h2 style="margin:5px auto;text-align:center;">
+											<h2 style="margin:10px auto;text-align:center;">
 												<?php
 												echo $row['nama_object']."<br/>";
 												?>
 											</h2>
-											<div class="row" style="margin-top:20px;">
+											<div class="row" style="margin:20px;">
 												<div class="col">
 													<?php
 													$idLokasi = $row['id_lokasi'];
@@ -301,38 +301,11 @@
 
 
 
-		<script>
-		var myHarga = document.getElementById("myHarga");
-		var harga = document.getElementById("harga");
-		harga.innerHTML = myHarga.value;
 
-		myHarga.oninput = function() {
-			harga.innerHTML = this.value;
-		}
-
-		var myJumlahLantai = document.getElementById("myJumlahLantai");
-		var jumlahLantai = document.getElementById("jumlahLantai");
-		jumlahLantai.innerHTML = myJumlahLantai.value;
-
-		myJumlahLantai.oninput = function() {
-			jumlahLantai.innerHTML = this.value;
-		}
-
-		var myJumlahKamarTidur = document.getElementById("myJumlahKamarTidur");
-		var kamarTidur = document.getElementById("kamarTidur");
-		kamarTidur.innerHTML = myJumlahKamarTidur.value;
-
-		myJumlahKamarTidur.oninput = function() {
-			kamarTidur.innerHTML = this.value;
-		}
-
-		
-		</script>
 		<script src="../../script/jquery-3.5.1.min.js"></script>
 		<script>
 		$(document).ready(function(){
 					$("#searchButton").click(function() {
-							console.log("hai");
 							var value = $("#myInput").val().toLowerCase();
 							$("#main-content .row").filter(function() {
 								$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
