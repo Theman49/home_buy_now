@@ -87,7 +87,7 @@ body {
   color: white;
   font-weight: bold;
   font-size: 20px;
-  transition: 0.6s ease;
+  transition: 0.4s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
   -webkit-user-select: none;
@@ -147,43 +147,31 @@ img.hover-shadow {
 <h2 style="text-align:center">Lightbox</h2>
 
 <div class="row">
-  <div class="column">
-    <img src="image/1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="image/2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="image/3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
-  </div>
-  <div class="column">
-    <img src="image/4.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
-  </div>
+  <?php 
+    for($i=1;$i<=4;$i++){
+      ?>
+        <div class="column">
+          <img src="image/<?=$i?>.jpg" style="width:100%;height:200px;" onclick="openModal();currentSlide(<?=$i?>)" class="hover-shadow cursor">
+        </div>
+      <?php
+    }
+  ?>
 </div>
 
 <div id="myModal" class="modal">
   <span class="close cursor" onclick="closeModal()">&times;</span>
   <div class="modal-content">
 
-    <div class="mySlides">
-      <div class="numbertext">1 / 4</div>
-      <img src="image/1.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <div class="numbertext">2 / 4</div>
-      <img src="image/2.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-      <div class="numbertext">3 / 4</div>
-      <img src="image/3.jpg" style="width:100%">
-    </div>
-    
-    <div class="mySlides">
-      <div class="numbertext">4 / 4</div>
-      <img src="image/4.jpg" style="width:100%">
-    </div>
+    <?php 
+      for($i=1;$i<=4;$i++){
+        ?>
+          <div class="mySlides">
+            <div class="numbertext"><?=$i?> / 4</div>
+            <img src="image/<?=$i?>.jpg" style="width:100%">
+          </div>
+        <?php
+      }
+    ?>
     
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -193,18 +181,16 @@ img.hover-shadow {
     </div>
 
 
-    <div class="column">
-      <img class="demo cursor" src="image/1.jpg" style="width:100%" onclick="currentSlide(1)" alt="Nature and sunrise">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="image/2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Snow">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="image/3.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="image/4.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
-    </div>
+    <?php 
+    for($i=1;$i<=4;$i++){
+      ?>
+        <div class="column">
+          <img class="demo cursor" src="image/<?=$i?>.jpg" style="width:100%;height:100px;" onclick="currentSlide(<?=$i?>)" alt="Nature and sunrise">
+        </div>
+      <?php
+    }
+  ?>
+
   </div>
 </div>
 

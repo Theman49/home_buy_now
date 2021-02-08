@@ -3,6 +3,16 @@ form {
     padding: 10px 5px 20px;
 }
 
+#float-filter p{
+    display: inline-block;
+    background-color:red;
+    position: absolute;
+    z-index: 10;
+}
+
+#filter {
+    transition: all 0.5s ease;
+}
 
 .min-max {
     width:60px;
@@ -23,10 +33,52 @@ select {
 }
 
 #main-content {
-    height: 40vw;
+    height: 100vh;
     overflow-y: auto;
 }
 
 img:hover {
     opacity: 0.8;
+}
+
+.item:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: whitesmoke;
+}
+
+@media screen and (max-width: 500px){
+    #filter {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 501px){
+    #float-filter {
+        display: none;
+    }
+}
+
+/* admin primary */
+#input-data input {
+    margin: 10px auto;
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+}
+
+/* button edit n delete */
+.update {
+    background-color: yellow;
+}
+
+.delete {
+    background-color: red;
+}
+
+.update:hover,
+.delete:hover {
+    background-color: #888;
+    color: #fff;
 }

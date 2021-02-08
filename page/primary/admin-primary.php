@@ -14,99 +14,30 @@
 		
 
 
-		<title>PRIMARY | Home Buy Now</title>
+		<title>ADMIN PRIMARY | Home Buy Now</title>
 	</head>
 
 	<body>
 
-		<?php
-            include "../../component/navigation.php";
-        ?>
+		<div class="" style="">
+            <h1>Admin</h1>
+        </div>
+
 		<div class="row">
-			<div id="float-filter">
-				<p>filter</p>
-			</div>
 			<!-- F I L T E R -->
-			<div id="filter" class="col-md-3 col-sm-12">
-				<form action="./primary-page.php" method="POST" class="container">
-					<!-- S E L E C T I O N  C H O O S E -->
-					<div class="sub-filter">
-						<br/>
-							<select name="lokasi" <?php echo ($_POST['lokasi'] != 'null') ? "style='background-color:cyan;'": "";?>>
-								<option selected="on" value="null">LOKASI</option>
-								<?php
-									$query = mysqli_query($conn, "SELECT * FROM lokasi");
-									while($row = mysqli_fetch_array($query)){	
-								?>
-								<option <?php if(isset($_POST['lokasi'])){echo ($row['id_lokasi'] == $_POST['lokasi']) ? " selected='on'":"";}?>value="<?=$row['id_lokasi']?>"><?=$row['nama_lokasi']?></option>
-								<?php
-										}
-								?>
-							</select>
-						
-					</div>
+			<div id="input-data" class="col-md-3 col-sm-12">
+				<form action="./insert-page.php" method="POST" enctype="multipart/form-data" class="container">
+                    <textarea name="nama_object" placeholder="Nama Object"></textarea>
+                    <input type="number" name="harga" placeholder="Harga"/>
+                    <input type="number" min="1" name="jumlah_lantai" placeholder="Jumlah Lantai"/>
+                    <input type="number" min="1" name="jumlah_kamar_tidur" placeholder="Jumlah Kamar Tidur"/>
+                    <input type="number" min="1" name="luas_tanah" placeholder="Luas Tanah"/>
+                    <input type="number" min="1" name="luas_bangunan" placeholder="Luas Bangunan"/>
+                    <input type="number" min="1" name="usia_bangunan" placeholder="Usia Bangunan"/>
+                    <input type="file" name="gambar"/>
 
-					<div class="sub-filter">
-						<br/>
-						<select name="harga" <?php echo ($_POST['harga'] != 'null') ? "style='background-color:cyan;'": "";?>>
-								<option selected="on" value="null">HARGA</option>
-								<?php
-									$query = mysqli_query($conn, "SELECT * FROM harga_primary");
-									$banyak = mysqli_num_rows($query);
-									while($row = mysqli_fetch_array($query)){	
-								?>
-								<option <?php if(isset($_POST['harga'])){echo ($row['id_harga'] == $_POST['harga']) ? " selected='on'":"";}?> 
-									value="<?php echo $row['id_harga']?>"><?php if($row['id_harga'] == $banyak){echo "> 5 Miliar";}else{?>
-										<?php echo (strlen($row['min_harga']) > 9) ? substr($row['min_harga'], 0, strlen($row['min_harga'])-9) : substr($row['min_harga'], 0, 3); ?>
-										-
-										<?php echo (strlen($row['max_harga']) > 9) ? substr($row['max_harga'], 0, strlen($row['max_harga'])-9) : substr($row['max_harga'], 0, 3); ?> 
-										<?php echo (strlen($row['max_harga']) > 9) ? "Miliar" : "Juta";}?>
-								</option>
-								<?php
-										}
-								?>
-							</select>
-						
-					</div>
-					<div class="sub-filter">
-						<br/>
-						<select name="jumlah_lantai" <?php echo ($_POST['jumlah_lantai'] != 'null') ? "style='background-color:cyan;'": "";?>>
-								<option selected="on"  value="null">JUMLAH LANTAI</option>
-								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == 1) ? " selected='on'":"";}?>value="1">1</option>
-								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == 2) ? " selected='on'":"";}?> value="2">2</option>
-								<option <?php if(isset($_POST['jumlah_lantai'])){echo ($_POST['jumlah_lantai'] == '2+') ? " selected='on'":"";}?> value="2+">>2</option>
-							</select>
-						
-					</div>
-					<div class="sub-filter">
-						<br/>
-						<select name="jumlah_kamar_tidur" <?php echo ($_POST['jumlah_kamar_tidur'] != 'null') ? "style='background-color:cyan;'": "";?>>
-								<option selected="on"  value="null">JUMLAH KAMAR TIDUR</option>
-								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == 1) ? " selected='on'":"";}?> value="1">1</option>
-								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == 2) ? " selected='on'":"";}?> value="2">2</option>
-								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == '2+') ? " selected='on'":"";}?> value="2+">>2</option>
-							</select>
-						
-					</div>
-
-					<div class="sub-filter">
-						<br/>
-						<select name="luas_tanah" <?php echo ($_POST['luas_tanah'] != 'null') ? "style='background-color:cyan;'": "";?>>
-								<option selected="on"  value="null">LUAS TANAH (m<sup>2</sup>)</option>
-								<?php
-									$query = mysqli_query($conn, "SELECT * FROM luas_tanah_dan_bangunan_primary");
-									$banyak = mysqli_num_rows($query);
-									while($row = mysqli_fetch_array($query)){	
-								?>
-								<option <?php if(isset($_POST['luas_tanah'])){echo ($row['id_luas'] == $_POST['luas_tanah']) ? " selected='on'":"";}?> value="<?=$row['id_luas']?>"><?php if($row['id_luas'] == $banyak){echo "> 500";}else{?><?php echo $row['min_luas'];?>-<?php echo $row['max_luas'];}?></option>
-								<?php
-										}
-								?>
-							</select>
-					</div>
-
-					<button type="submit" value="true" name="filter" style="margin-top:20px">Filter</button>
-					<button type="reset" onclick="document.location.href='./primary-page.php'"/>Reset</button>
+					<button type="submit" value="true" name="insert" style="margin-top:20px">Insert</button>
+					<button type="reset">Reset</button>
 				</form>
 
 				<div style="margin-top:30px">
@@ -279,7 +210,11 @@
 													echo "Luas Tanah : ".$row['luas_tanah']." m<sup>2</sup><br/>";
 													echo "Luas Bangunan : ".$row['luas_bangunan']." m<sup>2</sup><br/>";
 													echo "Usia Bangunan : ".$row['usia_bangunan'];
-													?>
+                                                    ?>
+                                                    <div style="margin-top:10px;">
+                                                        <a class="update btn" href="#edit">Edit</a>
+                                                        <a class="delete btn" href="#delete">Hapus</a>
+                                                    </div>
 												</div>
 											</div>
 										</div>
