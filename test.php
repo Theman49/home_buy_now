@@ -1,3 +1,7 @@
+<?php
+  echo '/uploads/';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

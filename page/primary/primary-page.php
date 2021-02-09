@@ -251,9 +251,16 @@
 								}
 								?>
 									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="alert('<?=$row['nama_object']?>')">
-									
+										
+										<?php
+											$id_primary = $row['id_primary'];
+
+											$select = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary AND (item = '1.jpg' OR item = '1.jpeg');");
+											$image = mysqli_fetch_array($select);
+										?>
+
 										<div class="col-4" style="padding: 0px;">
-											<img src="../../image/<?=$row['id_primary']?>.jpg" alt="foto" width="100%" height="100%">
+											<img src="./uploads/<?=$row['id_primary']?>/<?=$image['item']?>" alt="<?=$image['item']?>" width="100%" height="100%">
 										</div>
 										<div class="col-8">
 											<h2 style="margin:10px auto;text-align:center;">

@@ -26,122 +26,35 @@
 		<div class="row">
 			<!-- F I L T E R -->
 			<div id="input-data" class="col-md-3 col-sm-12">
-				<form action="./insert-page.php" method="POST" enctype="multipart/form-data" class="container">
-                    <textarea name="nama_object" placeholder="Nama Object"></textarea>
-                    <input type="number" name="harga" placeholder="Harga"/>
-                    <input type="number" min="1" name="jumlah_lantai" placeholder="Jumlah Lantai"/>
-                    <input type="number" min="1" name="jumlah_kamar_tidur" placeholder="Jumlah Kamar Tidur"/>
-                    <input type="number" min="1" name="luas_tanah" placeholder="Luas Tanah"/>
-                    <input type="number" min="1" name="luas_bangunan" placeholder="Luas Bangunan"/>
-                    <input type="number" min="1" name="usia_bangunan" placeholder="Usia Bangunan"/>
-                    <input type="file" name="gambar"/>
+				<form action="./action-insert-page.php" method="POST" enctype="multipart/form-data" class="container">
+                    <textarea name="nama_object" placeholder="Nama Object" required></textarea>
+					<select name="lokasi" style="margin: 10px 0px;padding: 4px 0px">
+						<?php
+							$query = mysqli_query($conn, "SELECT * FROM lokasi");
+							while($row = mysqli_fetch_array($query)){	
+						?>
+						<option value="<?=$row['id_lokasi']?>"><?=$row['nama_lokasi']?></option>
+						<?php
+								}
+						?>
+					</select>
+                    <input type="number" name="harga" placeholder="Harga" required/>
+                    <input type="number" min="1" name="jumlah_lantai" placeholder="Jumlah Lantai" required/>
+                    <input type="number" min="1" name="jumlah_kamar_tidur" placeholder="Jumlah Kamar Tidur" required/>
+                    <input type="number" min="1" name="luas_tanah" placeholder="Luas Tanah" required/>
+                    <input type="number" min="1" name="luas_bangunan" placeholder="Luas Bangunan" required/>
+                    <input type="number" min="1" name="usia_bangunan" placeholder="Usia Bangunan" required/>
+                    <input type="file" name="gambar" required/>
 
 					<button type="submit" value="true" name="insert" style="margin-top:20px">Insert</button>
 					<button type="reset">Reset</button>
 				</form>
-
-				<div style="margin-top:30px">
-					<h3>Berminat? Hubungi Sales untuk :</h3>
-					<ul>
-						<li>Info Diskon dan Promo</li>
-						<li>Appointment Jadwal Survey <a href="https://api.whatsapp.com/send?phone=6285729331669">Disini!</a></li>
-					</ul>
-					
-				</div>
 			</div>
 
 			<!-- M A I N  C O N T E N T -->
 			<div id="main-content" class="col-md-9 col-sm-12">
 					<?php
-						if(isset($_POST['filter']) == 'true'){
-
-							$cekNull = 0;
-							$saveSql = [];
-
-							$getLokasi = $_POST['lokasi'];
-							$sqlLokasi = 'id_lokasi = '.$getLokasi;
-							if($getLokasi == 'null'){
-								$cekNull += 1;
-								$sqlLokasi = "";
-							}else{
-								array_push($saveSql,$sqlLokasi);
-							}
-
-							$harga = $_POST['harga'];
-							$sqlHarga = 'id_harga = '.$harga;
-							if($harga == 'null'){
-								$cekNull += 1;
-								$sqlHarga = "";
-							}
-							else if($harga == '5M+'){
-								$harga = 6;
-								$sqlHarga = 'id_harga = '. $harga;
-								array_push($saveSql,$sqlHarga);
-							}
-							else{
-								array_push($saveSql,$sqlHarga);
-							}
-							
-							$jumlah_lantai = $_POST['jumlah_lantai'];
-							$sqlLantai = 'jumlah_lantai = '.$jumlah_lantai;
-							if($jumlah_lantai == 'null'){
-								$cekNull += 1;
-								$sqlLantai = "";
-								$connector[0] = '';
-							}
-							else if($jumlah_lantai == '2+'){
-								$jumlah_lantai = 2;
-								$sqlLantai = 'jumlah_lantai > '. $jumlah_lantai;
-								array_push($saveSql,$sqlLantai);
-							}else{
-								array_push($saveSql,$sqlLantai);
-							}
-
-							$jumlah_kamar_tidur = $_POST['jumlah_kamar_tidur'];
-							$sqlKamar = 'jumlah_kamar_tidur = '.$jumlah_kamar_tidur;
-							if($jumlah_kamar_tidur == 'null'){
-								$cekNull += 1;
-								$sqlKamar = "";
-								$connector[1] = '';
-							}
-							else if($jumlah_kamar_tidur == '2+'){
-								$jumlah_kamar_tidur = 2;
-								$sqlKamar = 'jumlah_kamar_tidur > '.$jumlah_kamar_tidur;
-								array_push($saveSql,$sqlKamar);
-							}else {
-								array_push($saveSql,$sqlKamar);
-							}
-
-							$luas_tanah = $_POST['luas_tanah'];
-							$sqlLuasTanah = 'id_luas = '.$luas_tanah;
-							if($luas_tanah == 'null'){
-								$cekNull += 1;
-								$sqlLuasTanah = "";
-							}else if($luas_tanah == '500+'){
-								$luas_tanah = 7;
-								$sqlLuasTanah = 'id_luas > '.$luas_tanah;
-								array_push($saveSql,$sqlLuasTanah);
-							}else {
-								array_push($saveSql,$sqlLuasTanah);
-							}
-
-							
-							if($cekNull == 5){
-								$sql = "SELECT * FROM primary_home";
-							}else if($cekNull == 4){
-								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0];
-							}else if($cekNull == 3){
-								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1];
-							}else if($cekNull == 2){
-								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1]." AND ".$saveSql[2];
-							}else {
-								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1]." AND ".$saveSql[2]." AND ".$saveSql[3];
-							}
-							echo $sql;
-						
-						}else{
-							$sql = "SELECT * FROM primary_home";
-						}
+						$sql = "SELECT * FROM primary_home";
 						$query = mysqli_query($conn, $sql);
 						if(mysqli_num_rows($query) == 0){
 							echo "no result";
@@ -182,9 +95,14 @@
 								}
 								?>
 									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="alert('<?=$row['nama_object']?>')">
-									
+									<?php
+										$id_primary = $row['id_primary'];
+
+										$select = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary AND (item = '1.jpg' OR item = '1.jpeg');");
+										$image = mysqli_fetch_array($select);
+									?>
 										<div class="col-4" style="padding: 0px;">
-											<img src="../../image/<?=$row['id_primary']?>.jpg" alt="foto" width="100%" height="100%">
+											<img src="./uploads/<?=$row['id_primary']?>/<?=$image['item']?>" alt="<?=$image['item']?>" width="100%" height="100%">
 										</div>
 										<div class="col-8">
 											<h2 style="margin:10px auto;text-align:center;">
