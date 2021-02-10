@@ -7,7 +7,7 @@
         $getLastId = mysqli_num_rows($query);
         $getLastId++;
 
-        $nama_object = $_POST['nama_object'];
+        $nama_object = mysqli_real_escape_string($conn, $_POST['nama_object']);
         $id_lokasi = $_POST['lokasi'];
         $harga = $_POST['harga'];
         $jumlah_lantai = $_POST['jumlah_lantai'];
@@ -76,14 +76,31 @@
             $type = "1.".$imageFileType;
             // echo $type;
 
-            $insert_image = mysqli_query($conn, "INSERT INTO primary_image VALUES($getLastId, $getLastId, '$type');");
+            $insert_image = mysqli_query($conn, "INSERT INTO primary_image VALUES(DEFAULT, $getLastId, '$type');");
             // echo $insert_image;
 
             $destination = "./uploads/".$getLastId;
             // echo $destination;
             mkdir($destination, 0777, true);
             move_uploaded_file($_FILES['gambar']['tmp_name'], $destination."/1.".$imageFileType);
-            echo "<script>alert('suksess');document.location.href = './admin-primary.php'</script>";
+            
+            $count = count($_FILES['gambar_multiple']['name']);
+            $no=2;
+            for($i=0; $i<$count; $i++){
+                $title_image = basename($_FILES['gambar_multiple']['name'][$i]);
+                $size_image = $_FILES['gambar_multiple']['size'][$i];
+                $imageFileType = strtolower(pathinfo($title_image,PATHINFO_EXTENSION));
+                
+                $type = $no.".".$imageFileType;
+
+                $insert_other_image = mysqli_query($conn, "INSERT INTO primary_image VALUES(DEFAULT, $getLastId, '$type');");
+
+                move_uploaded_file($_FILES['gambar_multiple']['tmp_name'][$i], $destination."/".$type);
+
+                $no++;
+            }
+
+            echo "<script>alert('Berhasil ditambahkan');document.location.href = './admin-primary.php'</script>";
         }
     }
 ?>

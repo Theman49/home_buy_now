@@ -44,7 +44,10 @@
                     <input type="number" min="1" name="luas_tanah" placeholder="Luas Tanah" required/>
                     <input type="number" min="1" name="luas_bangunan" placeholder="Luas Bangunan" required/>
                     <input type="number" min="1" name="usia_bangunan" placeholder="Usia Bangunan" required/>
+                    <label>Poster Utama</label><br/>
                     <input type="file" name="gambar" required/>
+					<label>Poster Tambahan</label><br/>
+					<input type="file" name="gambar_multiple[]" multiple required/>
 
 					<button type="submit" value="true" name="insert" style="margin-top:20px">Insert</button>
 					<button type="reset">Reset</button>
@@ -130,7 +133,7 @@
 													echo "Usia Bangunan : ".$row['usia_bangunan'];
                                                     ?>
                                                     <div style="margin-top:10px;">
-                                                        <a class="update btn" href="#edit">Edit</a>
+                                                        <a class="update btn" href="./action-edit-page.php?id=<?=$id_primary?>">Edit</a>
                                                         <a class="delete btn" href="#delete">Hapus</a>
                                                     </div>
 												</div>
