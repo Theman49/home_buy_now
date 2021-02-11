@@ -1,25 +1,25 @@
-function openModal() {
-    document.getElementById("myModal").style.display = "block";
+function openModal(modal) {
+    document.getElementById(modal).style.display = "block";
   }
   
-  function closeModal() {
-    document.getElementById("myModal").style.display = "none";
+  function closeModal(modal) {
+    document.getElementById(modal).style.display = "none";
   }
   
   var slideIndex = 1;
   showSlides(slideIndex);
   
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
+  function plusSlides(n, modal) {
+    showSlides(slideIndex += n, modal);
   }
   
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
+  function currentSlide(n, modal) {
+    showSlides(slideIndex = n, modal);
   }
   
-  function showSlides(n) {
+  function showSlides(n, modal) {
     var i;
-    var slides = document.getElementsByClassName("mySlides");
+    var slides = document.getElementById(modal).getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("demo");
     var captionText = document.getElementById("caption");
     if (n > slides.length) {slideIndex = 1}

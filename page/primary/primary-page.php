@@ -231,8 +231,6 @@
 										}
 										$price .= $pricePlus." Juta";	
 									}
-									
-									
 								}else{
 									for($i=1;$i<=$lengthPrice;$i++){
 										if($row['harga'][0] == '0'){
@@ -250,7 +248,7 @@
 									}
 								}
 								?>
-									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="alert('<?=$row['nama_object']?>')">
+									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="openModal('myModal<?=$row['id_primary']?>');currentSlide(<?=$row['id_primary']?>, 'myModal<?=$row['id_primary']?>')">
 										
 										<?php
 											$id_primary = $row['id_primary'];
@@ -291,12 +289,73 @@
 											</div>
 										</div>
 									</div>
+
+									<div id="myModal<?=$id_primary?>" class="modal">
+										<span class="close cursor" onclick="closeModal('myModal<?=$id_primary?>')">&times;</span>
+										<div class="modal-content">
+											<?php 
+											$destination = "./uploads/".$id_primary."/";
+											$nomor = 1;
+
+											$countOtherPoster = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary ORDER BY item ASC");
+
+											$counted = mysqli_num_rows($countOtherPoster);
+
+											while($image_item = mysqli_fetch_array($countOtherPoster)){
+												?>
+													<div class="mySlides">
+														<div class="numbertext"><?=$nomor?> / <?=$counted?></div>
+														<img src="<?=$destination.$image_item['item']?>" alt="<?=$image_item['item']?>" style="width:100%;height:100%;">
+													</div>
+												<?php
+												$nomor++;
+											}
+
+											?>
+
+											<?php
+												
+
+												if($counted > 1){
+												?>
+													<a class="prev" onclick="plusSlides(-1, 'myModal<?=$row['id_primary']?>')">&#10094;</a>
+													<a class="next" onclick="plusSlides(1, 'myModal<?=$row['id_primary']?>')">&#10095;</a>
+												<?php		
+												}
+											?>
+
+											<div class="caption-container">
+												<p id="caption"></p>
+											</div>
+
+											<div class="row">
+												<?php
+												$nomor=1;
+												
+												$countOtherPoster = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary ORDER BY item ASC");
+
+												while($image_item = mysqli_fetch_array($countOtherPoster)){
+												?>
+														
+													<div class="col">
+														<img class="demo cursor" src="<?=$destination.$image_item['item']?>" alt="<?=$image_item['item']?>" style="width:100%;height:100%;" onclick="currentSlide(<?=$nomor?>, 'myModal<?=$row['id_primary']?>')">
+													</div>
+													<?php
+														$nomor++;
+													}
+												?>
+											</div>
+
+										</div>
+									</div>
 								<?php
 							}
 						}
 					?>
 			</div>
 		</div>
+
+		
 		
 		
 							
@@ -340,8 +399,14 @@
 						}else{
 							filter.css("display","block");
 						}
-					})
+					});
+					
+
+
 			});
 		</script>
+
+
+		
 	</body>
 </html>

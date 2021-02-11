@@ -47,7 +47,7 @@
                     <label>Poster Utama</label><br/>
                     <input type="file" name="gambar" required/>
 					<label>Poster Tambahan</label><br/>
-					<input type="file" name="gambar_multiple[]" multiple required/>
+					<input type="file" name="gambar_multiple[]" multiple/>
 
 					<button type="submit" value="true" name="insert" style="margin-top:20px">Insert</button>
 					<button type="reset">Reset</button>

@@ -79,7 +79,7 @@
 					<label>Poster Utama</label><br/>
                     <input type="file" name="gambar" required/>
 					<label>Poster Tambahan</label><br/>
-					<input type="file" name="gambar_multiple[]" multiple required/>
+					<input type="file" name="gambar_multiple[]" multiple/>
 
 					<button type="submit" value="true" name="update" style="margin-top:20px">Update</button>
 					<button type="reset">Reset</button>
@@ -168,10 +168,39 @@
 											</div>
 										</div>
 									</div>
+
+
 								<?php
 						}
 					?>
+					<div id="poster-tambahan">
+						<h1>Gambar Lain</h1>
+
+						<div class="row">
+							<?php
+								$destination = "./uploads/".$id_primary."/";
+								$nomor=1;
+								
+								$countOtherPoster = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary ORDER BY item ASC");
+
+								while($image_item = mysqli_fetch_array($countOtherPoster)){
+									if($image_item['item'] == '1.jpg' || $image_item['item'] == '1.jpeg'){
+										continue;
+									}
+								?>
+										
+									<div class="col">
+										<img class="demo cursor" src="<?=$destination.$image_item['item']?>" alt="<?=$image_item['item']?>" style="width:100%;height:100%;" >
+									</div>
+									<?php
+										$nomor++;
+									}
+							?>
+						</div>
+					</div>
 			</div>
+
+			
 		</div>
 
         <!-- action update -->
@@ -252,13 +281,88 @@
                 $update_image = mysqli_query($conn, "UPDATE primary_image SET item = '$type' WHERE item = '$item' AND id_primary = $id_primary;");
                 // echo $insert_image;
     
-                $destination = "./uploads/".$id_primary;
-                if(move_uploaded_file($_FILES['gambar']['tmp_name'], $destination."/1.".$imageFileType)){
-					echo "<script>alert('berhasil')</script>";
+				$destination = "./uploads/".$id_primary;
+				
+
+                move_uploaded_file($_FILES['gambar']['tmp_name'], $destination."/1.".$imageFileType);
+
+
+
+
+				// select poster tambahan
+				$count = count($_FILES['gambar_multiple']['name']);
+
+				$select = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary AND (item != '1.jpg' AND item != '1.jpeg') LIMIT $count;");
+				$jumlah = mysqli_num_rows($select);
+
+				if($jumlah > 0){
+					$no=2;
+					$action=0;
+					$destination = "./uploads/".$id_primary;
+
+					while($selected = mysqli_fetch_array($select)){
+						$item = $selected['item'];
+						unlink($destination."/".$item);
+
+						$title_image = basename($_FILES['gambar_multiple']['name'][$action]);
+						$size_image = $_FILES['gambar_multiple']['size'][$action];
+						$imageFileType = strtolower(pathinfo($title_image,PATHINFO_EXTENSION));
+						
+						$type = $no.".".$imageFileType;
+		
+						$update_other_image = mysqli_query($conn, "UPDATE primary_image SET item = '$type' WHERE item = '$item' AND id_primary = $id_primary;");
+		
+						move_uploaded_file($_FILES['gambar_multiple']['tmp_name'][$action], $destination."/".$type);
+		
+						$no++;
+						$action++;
+					}
+
+					if($action != $count){
+						for($i=0; $i<($count-$action); $i++){
+							$title_image = basename($_FILES['gambar_multiple']['name'][$i]);
+							$size_image = $_FILES['gambar_multiple']['size'][$i];
+							$imageFileType = strtolower(pathinfo($title_image,PATHINFO_EXTENSION));
+							
+							$type = $no.".".$imageFileType;
+			
+							$insert_other_image = mysqli_query($conn, "INSERT INTO primary_image VALUES(DEFAULT, $id_primary, '$type');");
+			
+							move_uploaded_file($_FILES['gambar_multiple']['tmp_name'][$i], $destination."/".$type);
+							
+							echo $no;
+
+							$no++;
+
+						}
+					}
+
+
+
+
 				}else{
-					echo "<script>alert('gagal')</script>";
+					$no=2;
+					$action=0;
+					$destination = "./uploads/".$id_primary;
+
+					for($i=0; $i<$count; $i++){
+						$title_image = basename($_FILES['gambar_multiple']['name'][$i]);
+						$size_image = $_FILES['gambar_multiple']['size'][$i];
+						$imageFileType = strtolower(pathinfo($title_image,PATHINFO_EXTENSION));
+						
+						$type = $no.".".$imageFileType;
+		
+						$insert_other_image = mysqli_query($conn, "INSERT INTO primary_image VALUES(DEFAULT, $id_primary, '$type');");
+		
+						move_uploaded_file($_FILES['gambar_multiple']['tmp_name'][$i], $destination."/".$type);
+		
+						$no++;
+					}
 				}
-            }
+
+			}
+			
+			echo "<script>alert('berhasil')</script>";
 		}
             
         ?>
