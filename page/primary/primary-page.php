@@ -327,7 +327,9 @@
 											<div class="caption-container">
 												<p id="caption"></p>
 											</div>
-
+											<?php
+												if($counted > 1){
+											?>
 											<div class="row">
 												<?php
 												$nomor=1;
@@ -345,7 +347,9 @@
 													}
 												?>
 											</div>
-
+											<?php
+												}
+											?>
 										</div>
 									</div>
 								<?php

@@ -190,7 +190,7 @@
 								?>
 										
 									<div class="col">
-										<img class="demo cursor" src="<?=$destination.$image_item['item']?>" alt="<?=$image_item['item']?>" style="width:100%;height:100%;" >
+										<img class="cursor" src="<?=$destination.$image_item['item']?>" alt="<?=$image_item['item']?>" style="width:100%;height:100%;" >
 									</div>
 									<?php
 										$nomor++;

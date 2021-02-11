@@ -134,7 +134,7 @@
                                                     ?>
                                                     <div style="margin-top:10px;">
                                                         <a class="update btn" href="./action-edit-page.php?id=<?=$id_primary?>">Edit</a>
-                                                        <a class="delete btn" href="#delete">Hapus</a>
+                                                        <a class="delete btn" href="./action-delete-page.php?id=<?=$id_primary?>">Hapus</a>
                                                     </div>
 												</div>
 											</div>
