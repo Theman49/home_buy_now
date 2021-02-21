@@ -23,8 +23,11 @@
             include "../../component/navigation.php";
         ?>
 		<div class="row">
+			<div id="float-filter">
+				<p>filter</p>
+			</div>
 			<!-- F I L T E R -->
-			<div id="filter" class="col-3">
+			<div id="filter" class="col-md-3 col-sm-12">
 				<form action="./primary-page.php" method="POST" class="container">
 					<!-- S E L E C T I O N  C H O O S E -->
 					<div class="sub-filter">
@@ -89,7 +92,7 @@
 					<div class="sub-filter">
 						<br/>
 						<select name="luas_tanah" <?php echo ($_POST['luas_tanah'] != 'null') ? "style='background-color:cyan;'": "";?>>
-								<option selected="on"  value="null">LUAS BANGUNAN (m<sup>2</sup>)</option>
+								<option selected="on"  value="null">LUAS TANAH (m<sup>2</sup>)</option>
 								<?php
 									$query = mysqli_query($conn, "SELECT * FROM luas_tanah_dan_bangunan_primary");
 									$banyak = mysqli_num_rows($query);
@@ -105,10 +108,19 @@
 					<button type="submit" value="true" name="filter" style="margin-top:20px">Filter</button>
 					<button type="reset" onclick="document.location.href='./primary-page.php'"/>Reset</button>
 				</form>
+
+				<div style="margin-top:30px">
+					<h3>Berminat? Hubungi Sales untuk :</h3>
+					<ul>
+						<li>Info Diskon dan Promo</li>
+						<li>Appointment Jadwal Survey <a href="https://api.whatsapp.com/send?phone=6285729331669">Disini!</a></li>
+					</ul>
+					
+				</div>
 			</div>
 
 			<!-- M A I N  C O N T E N T -->
-			<div id="main-content" class="col-9">
+			<div id="main-content" class="col-md-9 col-sm-12">
 					<?php
 						if(isset($_POST['filter']) == 'true'){
 
@@ -219,8 +231,6 @@
 										}
 										$price .= $pricePlus." Juta";	
 									}
-									
-									
 								}else{
 									for($i=1;$i<=$lengthPrice;$i++){
 										if($row['harga'][0] == '0'){
@@ -238,10 +248,17 @@
 									}
 								}
 								?>
-									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="alert('<?=$row['nama_object']?>')">
-									
+									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="openModal('myModal<?=$row['id_primary']?>');currentSlide(<?=$row['id_primary']?>, 'myModal<?=$row['id_primary']?>')">
+										
+										<?php
+											$id_primary = $row['id_primary'];
+
+											$select = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary AND (item = '1.jpg' OR item = '1.jpeg');");
+											$image = mysqli_fetch_array($select);
+										?>
+
 										<div class="col-4" style="padding: 0px;">
-											<img src="../../image/<?=$row['id_primary']?>.jpg" alt="foto" width="100%" height="auto">
+											<img src="./uploads/<?=$row['id_primary']?>/<?=$image['item']?>" alt="<?=$image['item']?>" width="100%" height="100%">
 										</div>
 										<div class="col-8">
 											<h2 style="margin:10px auto;text-align:center;">
@@ -265,11 +282,74 @@
 												<div class="col">
 													<?php
 													echo "Luas Tanah : ".$row['luas_tanah']." m<sup>2</sup><br/>";
-													echo "Luas Bangunan : ".$row['luas_tanah']." m<sup>2</sup><br/>";
+													echo "Luas Bangunan : ".$row['luas_bangunan']." m<sup>2</sup><br/>";
 													echo "Usia Bangunan : ".$row['usia_bangunan'];
 													?>
 												</div>
 											</div>
+										</div>
+									</div>
+
+									<div id="myModal<?=$id_primary?>" class="modal">
+										<span class="close cursor" onclick="closeModal('myModal<?=$id_primary?>')">&times;</span>
+										<div class="modal-content">
+											<?php 
+											$destination = "./uploads/".$id_primary."/";
+											$nomor = 1;
+
+											$countOtherPoster = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary ORDER BY item ASC");
+
+											$counted = mysqli_num_rows($countOtherPoster);
+
+											while($image_item = mysqli_fetch_array($countOtherPoster)){
+												?>
+													<div class="mySlides">
+														<div class="numbertext"><?=$nomor?> / <?=$counted?></div>
+														<img src="<?=$destination.$image_item['item']?>" alt="<?=$image_item['item']?>" style="width:100%;height:100%;">
+													</div>
+												<?php
+												$nomor++;
+											}
+
+											?>
+
+											<?php
+												
+
+												if($counted > 1){
+												?>
+													<a class="prev" onclick="plusSlides(-1, 'myModal<?=$row['id_primary']?>')">&#10094;</a>
+													<a class="next" onclick="plusSlides(1, 'myModal<?=$row['id_primary']?>')">&#10095;</a>
+												<?php		
+												}
+											?>
+
+											<div class="caption-container">
+												<p id="caption"></p>
+											</div>
+											<?php
+												if($counted > 1){
+											?>
+											<div class="row">
+												<?php
+												$nomor=1;
+												
+												$countOtherPoster = mysqli_query($conn, "SELECT * FROM primary_image WHERE id_primary = $id_primary ORDER BY item ASC");
+
+												while($image_item = mysqli_fetch_array($countOtherPoster)){
+												?>
+														
+													<div class="col">
+														<img class="demo cursor" src="<?=$destination.$image_item['item']?>" alt="<?=$image_item['item']?>" style="width:100%;height:100%;" onclick="currentSlide(<?=$nomor?>, 'myModal<?=$row['id_primary']?>')">
+													</div>
+													<?php
+														$nomor++;
+													}
+												?>
+											</div>
+											<?php
+												}
+											?>
 										</div>
 									</div>
 								<?php
@@ -278,6 +358,9 @@
 					?>
 			</div>
 		</div>
+
+		
+		
 		
 							
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
@@ -303,6 +386,7 @@
 
 
 		<script src="../../script/jquery-3.5.1.min.js"></script>
+		<script src="./script-primary.js"></script>
 		<script>
 		$(document).ready(function(){
 					$("#searchButton").click(function() {
@@ -311,7 +395,22 @@
 								$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 						});
 					});
+					// toogle hide and block with jquery
+					$("#float-filter").click(function() {
+						var filter = $('#filter');
+						if(filter.css("display") == "block"){
+							filter.css("display","none");
+						}else{
+							filter.css("display","block");
+						}
+					});
+					
+
+
 			});
 		</script>
+
+
+		
 	</body>
 </html>

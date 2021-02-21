@@ -1,3 +1,7 @@
+<?php
+  echo '/uploads/';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +54,22 @@
   </style>
 </head>
 <body>
+<form action="" method="post" enctype="multipart/form-data">
+    <br/>
+    <input type="file" multiple name="images[]">
+    <button type="submit" name="submit">cek</button>
+</form>
+<?php
+  if(isset($_POST['submit'])){
+    $count = count($_FILES['images']['name']);
+    for($i=0; $i<$count; $i++){
+      echo $_FILES['images']['name'][$i];
+      echo "<br/>";
+    }
+  }
+?>
+
+
   <div id="parent">
     <div id="child">
 
@@ -66,7 +86,7 @@
   const parent = document.getElementById("parent");
   const child = document.getElementById("child");
   const child2 = document.getElementById("child2");
-  alert(window.clientWidth);
+  // alert(window.clientWidth);
   function change(){
     if(child.style.left == "0px" || child.style.left == 0){
       child.style.left = parent.offsetWidth-child.offsetWidth + "px";
