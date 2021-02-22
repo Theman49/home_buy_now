@@ -69,6 +69,56 @@
   }
 ?>
 
+<style>
+  #tooltip {
+    background-color: red;
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+  }
+
+  #tooltip > p {
+    line-height: 100px
+  }
+
+   #hoverMe {
+    display: none;
+    position: absolute;
+    top: -40px;
+    width: 200px;
+    height: 35px;
+    padding: 0px;
+    border-radius: 20px;
+  }
+
+  #hoverMe::before {
+    content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: blue transparent transparent transparent;
+  }
+
+  #tooltip:hover #hoverMe {
+    background-color: blue;
+    display: block;
+  }
+
+ 
+</style>
+
+<div id="tooltip">
+  <p>top</p>
+  <div id="hoverMe">
+    <p>tooltip-text</p>
+  </div>
+</div>
+
 
   <div id="parent">
     <div id="child">

@@ -82,9 +82,15 @@
 						<br/>
 						<select name="jumlah_kamar_tidur" <?php echo ($_POST['jumlah_kamar_tidur'] != 'null') ? "style='background-color:cyan;'": "";?>>
 								<option selected="on"  value="null">JUMLAH KAMAR TIDUR</option>
-								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == 1) ? " selected='on'":"";}?> value="1">1</option>
-								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == 2) ? " selected='on'":"";}?> value="2">2</option>
-								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == '2+') ? " selected='on'":"";}?> value="2+">>2</option>
+								
+								<?php
+									for($i=1; $i<=6; $i++){
+										?>
+											<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == $i) ? " selected='on'":"";}?> value="<?=$i?>"><?=$i?></option>
+										<?php
+									}
+								?>
+								<option <?php if(isset($_POST['jumlah_kamar_tidur'])){echo ($_POST['jumlah_kamar_tidur'] == '6+') ? " selected='on'":"";}?> value="6+">>6</option>
 							</select>
 						
 					</div>
@@ -173,8 +179,8 @@
 								$sqlKamar = "";
 								$connector[1] = '';
 							}
-							else if($jumlah_kamar_tidur == '2+'){
-								$jumlah_kamar_tidur = 2;
+							else if($jumlah_kamar_tidur == '6+'){
+								$jumlah_kamar_tidur = 6;
 								$sqlKamar = 'jumlah_kamar_tidur > '.$jumlah_kamar_tidur;
 								array_push($saveSql,$sqlKamar);
 							}else {
@@ -203,8 +209,10 @@
 								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1];
 							}else if($cekNull == 2){
 								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1]." AND ".$saveSql[2];
-							}else {
+							}else if($cekNull == 1) {
 								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1]." AND ".$saveSql[2]." AND ".$saveSql[3];
+							}else{
+								$sql = "SELECT * FROM primary_home WHERE ".$saveSql[0]." AND ".$saveSql[1]." AND ".$saveSql[2]." AND ".$saveSql[3]." AND ".$saveSql[4];
 							}
 							echo $sql;
 						
@@ -248,8 +256,10 @@
 									}
 								}
 								?>
-									<div class="row item" style="border: 1px solid black;cursor:pointer;" onclick="openModal('myModal<?=$row['id_primary']?>');currentSlide(<?=$row['id_primary']?>, 'myModal<?=$row['id_primary']?>')">
+									<div class="row item" style="border: 1px solid black;cursor:pointer;margin-bottom: 10px;" onclick="openModal('myModal<?=$row['id_primary']?>');currentSlide(<?=$row['id_primary']?>, 'myModal<?=$row['id_primary']?>')" onmouseover="tooltip(<?=$row['id_primary'];?>);" onmouseout="tooltipLeave(<?=$row['id_primary'];?>)">
+
 										
+
 										<?php
 											$id_primary = $row['id_primary'];
 
@@ -257,10 +267,14 @@
 											$image = mysqli_fetch_array($select);
 										?>
 
-										<div class="col-4" style="padding: 0px;">
+										<div class="col-12 col-lg-4" style="padding: 0px; position: relative;">
 											<img src="./uploads/<?=$row['id_primary']?>/<?=$image['item']?>" alt="<?=$image['item']?>" width="100%" height="100%">
+
+											<div id="tooltip-text-<?=$row['id_primary'];?>" class="hidden-tooltip" style="text-align: center;">
+												<p>Click Me, to see more picture :)</p>
+											</div>
 										</div>
-										<div class="col-8">
+										<div class="col-12 col-lg-8">
 											<h2 style="margin:10px auto;text-align:center;">
 												<?php
 												echo $row['nama_object']."<br/>";

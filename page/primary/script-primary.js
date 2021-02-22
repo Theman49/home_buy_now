@@ -7,7 +7,7 @@ function openModal(modal) {
   }
   
   var slideIndex = 1;
-  showSlides(slideIndex);
+  // showSlides(slideIndex);
   
   function plusSlides(n, modal) {
     showSlides(slideIndex += n, modal);
@@ -33,4 +33,13 @@ function openModal(modal) {
     slides[slideIndex-1].style.display = "block";
     dots[slideIndex-1].className += " active";
     captionText.innerHTML = dots[slideIndex-1].alt;
+  }
+
+  // tooltip
+  function tooltip(id){
+    document.getElementById('tooltip-text-' + id).classList.add("show-tooltip");
+  }
+
+  function tooltipLeave(id){
+    document.getElementById('tooltip-text-' + id).classList.remove("show-tooltip");
   }
